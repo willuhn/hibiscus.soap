@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<plugin name="hibiscus.soap" version="1.0" class="de.willuhn.jameica.hbci.soap.Plugin">
+
+  <description>SOAP-Connector fuer Hibiscus</description>
+  <url></url>
+  <homepage>http://www.willuhn.de/projects/hibiscus</homepage>
+  <license>proprietary</license>
+
+  <requires jameica="1.7+">
+    <import plugin="jameica.soap" version="1.0+"/>
+    <import plugin="hibiscus" version="1.9+"/>
+  </requires>
+
+  <classfinder>
+    <include>hibiscus\.soap\.jar</include>
+    <include>.*\.class</include>
+  </classfinder>
+
+  <services/>
+    <service name="connector" depends="" autostart="true" class="de.willuhn.jameica.hbci.soap.rmi.ConnectorService" />
+  </services>
+</plugin>
+
