@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/KontoServiceImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/19 23:50:36 $
+ * $Revision: 1.3 $
+ * $Date: 2008/10/20 00:26:22 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -20,19 +20,16 @@ import java.util.List;
 import javax.jws.WebService;
 
 import de.willuhn.datasource.rmi.DBIterator;
-import de.willuhn.jameica.hbci.HBCI;
 import de.willuhn.jameica.hbci.rmi.HBCIDBService;
 import de.willuhn.jameica.hbci.soap.beans.Konto;
 import de.willuhn.jameica.hbci.soap.service.KontoService;
-import de.willuhn.jameica.system.Application;
-import de.willuhn.logging.Logger;
 
 
 /**
  * Implementierung des Konto-Service.
  */
 @WebService(endpointInterface="de.willuhn.jameica.hbci.soap.service.KontoService")
-public class KontoServiceImpl implements KontoService
+public class KontoServiceImpl extends AbstractService implements KontoService
 {
 
   /**
@@ -56,7 +53,7 @@ public class KontoServiceImpl implements KontoService
    */
   public Konto findById(String id) throws RemoteException
   {
-    if (id == null)
+    if (id == null || id.length() == 0)
       throw new RemoteException("no id given");
 
     HBCIDBService service = getService();
@@ -65,33 +62,12 @@ public class KontoServiceImpl implements KontoService
   }
   
   /**
-   * Liefert den DB-Service von Hibiscus.
-   * @return der DB-Service von Hibiscus.
-   * @throws RemoteException
-   */
-  private HBCIDBService getService() throws RemoteException
-  {
-    try
-    {
-      return (HBCIDBService) Application.getServiceFactory().lookup(HBCI.class,"database");
-    }
-    catch (RemoteException re)
-    {
-      throw re;
-    }
-    catch (Exception e)
-    {
-      throw new RemoteException("unable to open hibiscus db service",e);
-    }
-  }
-  
-  /**
    * Kopiert die Properties des Hibiscus-Kontos in die Bean.
    * @param kh Hibiscus-Konto.
    * @return SOAP-taugliche Bean.
    * @throws RemoteException
    */
-  private Konto copy(de.willuhn.jameica.hbci.rmi.Konto kh) throws RemoteException
+  static Konto copy(de.willuhn.jameica.hbci.rmi.Konto kh) throws RemoteException
   {
     Konto k = new Konto();
     k.setBezeichnung(kh.getBezeichnung());
@@ -110,6 +86,9 @@ public class KontoServiceImpl implements KontoService
 
 /**********************************************************************
  * $Log: KontoServiceImpl.java,v $
+ * Revision 1.3  2008/10/20 00:26:22  willuhn
+ * @N Ueberweisung-Service
+ *
  * Revision 1.2  2008/10/19 23:50:36  willuhn
  * @N Erste funktionierende Version
  *

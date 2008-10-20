@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/Test.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/10/19 23:50:36 $
+ * $Revision: 1.2 $
+ * $Date: 2008/10/20 00:26:22 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -13,7 +13,7 @@
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.List;
+import java.util.Date;
 
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -25,7 +25,8 @@ import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 
 import de.willuhn.jameica.hbci.soap.beans.Konto;
-import de.willuhn.jameica.hbci.soap.service.KontoService;
+import de.willuhn.jameica.hbci.soap.beans.Ueberweisung;
+import de.willuhn.jameica.hbci.soap.service.UeberweisungService;
 
 /**
  * Test-Client fuer den Zugriff via SOAP.
@@ -39,13 +40,13 @@ public class Test
   public static void main(String[] args) throws Exception
   {
     // URL
-    String url = "https://localhost:8080/soap/Konto";
+    String url = "https://localhost:8080/soap/Ueberweisung";
     
     JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
-    factory.setServiceClass(KontoService.class);
+    factory.setServiceClass(UeberweisungService.class);
     factory.setAddress(url);
     
-    KontoService client = (KontoService) factory.create();
+    UeberweisungService client = (UeberweisungService) factory.create();
     
     
     ////////////////////////////////////////////////////////////////////////////
@@ -68,13 +69,22 @@ public class Test
       auth.setPassword("test");
     }
     ////////////////////////////////////////////////////////////////////////////
+
+    Konto k = new Konto();
+    k.setId("8");
     
-    List<Konto> konten = client.findAll();
-    for (int i=0;i<konten.size();++i)
-    {
-      Konto k = konten.get(i);
-      System.out.println(k.getId() + ": " + k.getKontonummer());
-    }
+    Ueberweisung u = new Ueberweisung();
+    u.setBetrag(125.55);
+    u.setGegenkontoBlz("12345678");
+    u.setGegenkontoName("Max Mustermann");
+    u.setGegenkontoNummer("123457890");
+    u.setKonto(k);
+    u.setTermin(new Date());
+    u.setTerminauftrag(true);
+    u.setZweck1("SOAP 1");
+    u.setZweck2("SOAP 2");
+    
+    System.out.println(client.store(u));
   }
   
   /**
@@ -107,6 +117,9 @@ public class Test
 
 /*********************************************************************
  * $Log: Test.java,v $
+ * Revision 1.2  2008/10/20 00:26:22  willuhn
+ * @N Ueberweisung-Service
+ *
  * Revision 1.1  2008/10/19 23:50:36  willuhn
  * @N Erste funktionierende Version
  *
