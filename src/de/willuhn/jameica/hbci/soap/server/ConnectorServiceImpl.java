@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/server/Attic/ConnectorServiceImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/20 00:26:22 $
+ * $Revision: 1.3 $
+ * $Date: 2008/10/21 00:17:58 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -17,6 +17,9 @@ import java.rmi.RemoteException;
 
 import de.willuhn.jameica.hbci.soap.rmi.ConnectorService;
 import de.willuhn.jameica.hbci.soap.service.impl.KontoServiceImpl;
+import de.willuhn.jameica.hbci.soap.service.impl.LastschriftServiceImpl;
+import de.willuhn.jameica.hbci.soap.service.impl.SammelLastschriftServiceImpl;
+import de.willuhn.jameica.hbci.soap.service.impl.SammelUeberweisungServiceImpl;
 import de.willuhn.jameica.hbci.soap.service.impl.UeberweisungServiceImpl;
 import de.willuhn.jameica.messaging.Message;
 import de.willuhn.jameica.messaging.MessageConsumer;
@@ -117,6 +120,9 @@ public class ConnectorServiceImpl implements ConnectorService
       {
         Application.getMessagingFactory().getMessagingQueue("jameica.soap.publish").sendMessage(new QueryMessage("/Konto",new KontoServiceImpl()));
         Application.getMessagingFactory().getMessagingQueue("jameica.soap.publish").sendMessage(new QueryMessage("/Ueberweisung",new UeberweisungServiceImpl()));
+        Application.getMessagingFactory().getMessagingQueue("jameica.soap.publish").sendMessage(new QueryMessage("/Lastschrift",new LastschriftServiceImpl()));
+        Application.getMessagingFactory().getMessagingQueue("jameica.soap.publish").sendMessage(new QueryMessage("/SammelUeberweisung",new SammelUeberweisungServiceImpl()));
+        Application.getMessagingFactory().getMessagingQueue("jameica.soap.publish").sendMessage(new QueryMessage("/SammelLastschrift",new SammelLastschriftServiceImpl()));
       }
     }
   }
@@ -126,6 +132,9 @@ public class ConnectorServiceImpl implements ConnectorService
 
 /**********************************************************************
  * $Log: ConnectorServiceImpl.java,v $
+ * Revision 1.3  2008/10/21 00:17:58  willuhn
+ * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
+ *
  * Revision 1.2  2008/10/20 00:26:22  willuhn
  * @N Ueberweisung-Service
  *

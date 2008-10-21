@@ -1,6 +1,6 @@
 /**********************************************************************
- * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/UeberweisungServiceImpl.java,v $
- * $Revision: 1.2 $
+ * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/LastschriftServiceImpl.java,v $
+ * $Revision: 1.1 $
  * $Date: 2008/10/21 00:17:58 $
  * $Author: willuhn $
  * $Locker:  $
@@ -15,7 +15,6 @@ package de.willuhn.jameica.hbci.soap.service.impl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.jws.WebService;
@@ -24,20 +23,20 @@ import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.ObjectNotFoundException;
 import de.willuhn.jameica.hbci.rmi.HBCIDBService;
 import de.willuhn.jameica.hbci.soap.beans.Konto;
+import de.willuhn.jameica.hbci.soap.beans.Lastschrift;
 import de.willuhn.jameica.hbci.soap.beans.PaymentData;
-import de.willuhn.jameica.hbci.soap.beans.Ueberweisung;
-import de.willuhn.jameica.hbci.soap.service.UeberweisungService;
+import de.willuhn.jameica.hbci.soap.service.LastschriftService;
 import de.willuhn.util.ApplicationException;
 
 
 /**
- * Implementierung des Ueberweisung-Service.
+ * Implementierung des Lastschrift-Service.
  */
-@WebService(endpointInterface="de.willuhn.jameica.hbci.soap.service.UeberweisungService")
-public class UeberweisungServiceImpl extends AbstractService implements UeberweisungService
+@WebService(endpointInterface="de.willuhn.jameica.hbci.soap.service.LastschriftService")
+public class LastschriftServiceImpl extends AbstractService implements LastschriftService
 {
   /**
-   * @see de.willuhn.jameica.hbci.soap.service.TransferService#delete(java.lang.String)
+   * @see de.willuhn.jameica.hbci.soap.service.PaymentService#delete(java.lang.String)
    */
   public void delete(String id) throws RemoteException
   {
@@ -46,7 +45,7 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
     
     try
     {
-      de.willuhn.jameica.hbci.rmi.Ueberweisung u = (de.willuhn.jameica.hbci.rmi.Ueberweisung) getService().createObject(de.willuhn.jameica.hbci.rmi.Ueberweisung.class,id);
+      de.willuhn.jameica.hbci.rmi.Lastschrift u = (de.willuhn.jameica.hbci.rmi.Lastschrift) getService().createObject(de.willuhn.jameica.hbci.rmi.Lastschrift.class,id);
       u.delete();
     }
     catch (ApplicationException ae)
@@ -55,55 +54,54 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
     }
     catch (ObjectNotFoundException e)
     {
-      throw new RemoteException("ueberweisung [id: " + id + "] not found");
+      throw new RemoteException("lastschrift [id: " + id + "] not found");
     }
   }
 
   /**
-   * @see de.willuhn.jameica.hbci.soap.service.TransferService#findAllOpen()
+   * @see de.willuhn.jameica.hbci.soap.service.PaymentService#findAllOpen()
    */
-  public List<Ueberweisung> findAllOpen() throws RemoteException
+  public List<Lastschrift> findAllOpen() throws RemoteException
   {
     HBCIDBService service = getService();
-    DBIterator list = service.createList(de.willuhn.jameica.hbci.rmi.Ueberweisung.class);
+    DBIterator list = service.createList(de.willuhn.jameica.hbci.rmi.Lastschrift.class);
     list.addFilter("ausgefuehrt = 0");
-    list.addFilter("(banktermin = 1 OR termin <= ?)", new Object[]{new java.sql.Date(new Date().getTime())});
 
-    List<Ueberweisung> ueberweisungen = new ArrayList<Ueberweisung>();
+    List<Lastschrift> lastschriften = new ArrayList<Lastschrift>();
     while (list.hasNext())
     {
-      de.willuhn.jameica.hbci.rmi.Ueberweisung uh = (de.willuhn.jameica.hbci.rmi.Ueberweisung) list.next();
-      ueberweisungen.add(copy(uh));
+      de.willuhn.jameica.hbci.rmi.Lastschrift uh = (de.willuhn.jameica.hbci.rmi.Lastschrift) list.next();
+      lastschriften.add(copy(uh));
     }
-    return ueberweisungen;
+    return lastschriften;
   }
 
   /**
-   * @see de.willuhn.jameica.hbci.soap.service.TransferService#findById(java.lang.String)
+   * @see de.willuhn.jameica.hbci.soap.service.PaymentService#findById(java.lang.String)
    */
-  public Ueberweisung findById(String id) throws RemoteException
+  public Lastschrift findById(String id) throws RemoteException
   {
     if (id == null || id.length() == 0)
       throw new RemoteException("no id given");
 
     HBCIDBService service = getService();
-    de.willuhn.jameica.hbci.rmi.Ueberweisung uh = (de.willuhn.jameica.hbci.rmi.Ueberweisung) service.createObject(de.willuhn.jameica.hbci.rmi.Ueberweisung.class,id);
+    de.willuhn.jameica.hbci.rmi.Lastschrift uh = (de.willuhn.jameica.hbci.rmi.Lastschrift) service.createObject(de.willuhn.jameica.hbci.rmi.Lastschrift.class,id);
     return copy(uh);
   }
 
   /**
-   * @see de.willuhn.jameica.hbci.soap.service.TransferService#store(de.willuhn.jameica.hbci.soap.beans.AbstractTransfer)
+   * @see de.willuhn.jameica.hbci.soap.service.PaymentService#store(de.willuhn.jameica.hbci.soap.beans.Payment)
    */
-  public String store(Ueberweisung ueberweisung) throws RemoteException
+  public String store(Lastschrift lastschrift) throws RemoteException
   {
-    if (ueberweisung == null)
-      throw new RemoteException("no ueberweisung given");
+    if (lastschrift == null)
+      throw new RemoteException("no lastschrift given");
 
-    PaymentData data = ueberweisung.getPaymentData();
+    PaymentData data = lastschrift.getPaymentData();
     if (data == null)
       throw new RemoteException("no payment data given");
 
-    Konto k = ueberweisung.getKonto();
+    Konto k = lastschrift.getKonto();
     if (k == null || k.getId() == null || k.getId().length() == 0)
       throw new RemoteException("no konto given");
 
@@ -119,7 +117,7 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
       throw new RemoteException("konto [id: " + k.getId() + "] not found");
     }
     
-    de.willuhn.jameica.hbci.rmi.Ueberweisung uh = (de.willuhn.jameica.hbci.rmi.Ueberweisung) service.createObject(de.willuhn.jameica.hbci.rmi.Ueberweisung.class,null);
+    de.willuhn.jameica.hbci.rmi.Lastschrift uh = (de.willuhn.jameica.hbci.rmi.Lastschrift) service.createObject(de.willuhn.jameica.hbci.rmi.Lastschrift.class,null);
     uh.setBetrag(data.getBetrag());
     uh.setGegenkontoBLZ(data.getGegenkontoBlz());
     uh.setGegenkontoName(data.getGegenkontoName());
@@ -127,11 +125,9 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
     uh.setTextSchluessel(data.getTextschluessel());
     uh.setZweck(data.getZweck1());
     uh.setZweck2(data.getZweck2());
-    
-    uh.setTermin(ueberweisung.getTermin());
-    uh.setTerminUeberweisung(ueberweisung.isTerminauftrag());
 
     uh.setKonto(kh);
+    uh.setTermin(lastschrift.getTermin());
     
     try
     {
@@ -145,12 +141,12 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
   }
 
   /**
-   * Kopiert die Properties der Hibiscus-Ueberweisung in die Bean.
-   * @param uh Hibiscus-Ueberweisung.
+   * Kopiert die Properties der Hibiscus-Lastschrift in die Bean.
+   * @param uh Hibiscus-Lastschrift.
    * @return SOAP-taugliche Bean.
    * @throws RemoteException
    */
-  static Ueberweisung copy(de.willuhn.jameica.hbci.rmi.Ueberweisung uh) throws RemoteException
+  static Lastschrift copy(de.willuhn.jameica.hbci.rmi.Lastschrift uh) throws RemoteException
   {
     PaymentData data = new PaymentData();
     data.setBetrag(uh.getBetrag());
@@ -160,11 +156,10 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
     data.setTextschluessel(uh.getTextSchluessel());
     data.setZweck1(uh.getZweck());
     data.setZweck2(uh.getZweck2());
-
-    Ueberweisung u = new Ueberweisung();
+    
+    Lastschrift u = new Lastschrift();
     u.setId(uh.getID());
     u.setTermin(uh.getTermin());
-    u.setTerminauftrag(uh.isTerminUeberweisung());
     u.setKonto(KontoServiceImpl.copy(uh.getKonto()));
     u.setPaymentData(data);
     return u;
@@ -174,11 +169,8 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
 
 
 /**********************************************************************
- * $Log: UeberweisungServiceImpl.java,v $
- * Revision 1.2  2008/10/21 00:17:58  willuhn
+ * $Log: LastschriftServiceImpl.java,v $
+ * Revision 1.1  2008/10/21 00:17:58  willuhn
  * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
- *
- * Revision 1.1  2008/10/20 00:26:22  willuhn
- * @N Ueberweisung-Service
  *
  **********************************************************************/

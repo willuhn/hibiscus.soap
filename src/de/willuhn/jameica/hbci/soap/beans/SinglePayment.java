@@ -1,0 +1,56 @@
+/**********************************************************************
+ * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/SinglePayment.java,v $
+ * $Revision: 1.1 $
+ * $Date: 2008/10/21 00:17:58 $
+ * $Author: willuhn $
+ * $Locker:  $
+ * $State: Exp $
+ *
+ * Copyright (c) by willuhn software & services
+ * All rights reserved
+ *
+ **********************************************************************/
+
+package de.willuhn.jameica.hbci.soap.beans;
+
+
+
+/**
+ * Abstracte SOAP-Bean fuer einen Einzelauftrag.
+ */
+public abstract class SinglePayment extends Payment
+{
+  private PaymentData paymentData = null;
+
+  
+  /**
+   * Liefert die Zahlungsdaten.
+   * @return die Zahlungsdaten.
+   */
+  public PaymentData getPaymentData()
+  {
+    return paymentData;
+  }
+
+  /**
+   * Speichert die Zahlungsdaten.
+   * @param paymentData
+   */
+  public void setPaymentData(PaymentData paymentData)
+  {
+    this.paymentData = paymentData;
+  }
+  
+  
+}
+
+
+/**********************************************************************
+ * $Log: SinglePayment.java,v $
+ * Revision 1.1  2008/10/21 00:17:58  willuhn
+ * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
+ *
+ * Revision 1.1  2008/10/20 00:26:22  willuhn
+ * @N Ueberweisung-Service
+ *
+ **********************************************************************/

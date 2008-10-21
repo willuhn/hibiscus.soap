@@ -1,6 +1,6 @@
 /**********************************************************************
- * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/UeberweisungService.java,v $
- * $Revision: 1.2 $
+ * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/SammelUeberweisungService.java,v $
+ * $Revision: 1.1 $
  * $Date: 2008/10/21 00:17:58 $
  * $Author: willuhn $
  * $Locker:  $
@@ -15,24 +15,21 @@ package de.willuhn.jameica.hbci.soap.service;
 
 import javax.jws.WebService;
 
-import de.willuhn.jameica.hbci.soap.beans.Ueberweisung;
+import de.willuhn.jameica.hbci.soap.beans.SammelUeberweisung;
 
 
 /**
- * Interface fuer den Ueberweisungs-Webservice.
+ * Interface fuer den Sammel-Ueberweisung-Webservice.
  */
-@WebService(name="Ueberweisung")
-public interface UeberweisungService extends PaymentService<Ueberweisung>
+@WebService(name="SammelUeberweisung")
+public interface SammelUeberweisungService extends PaymentService<SammelUeberweisung>
 {
 }
 
 
 /**********************************************************************
- * $Log: UeberweisungService.java,v $
- * Revision 1.2  2008/10/21 00:17:58  willuhn
+ * $Log: SammelUeberweisungService.java,v $
+ * Revision 1.1  2008/10/21 00:17:58  willuhn
  * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
- *
- * Revision 1.1  2008/10/20 00:26:22  willuhn
- * @N Ueberweisung-Service
  *
  **********************************************************************/
