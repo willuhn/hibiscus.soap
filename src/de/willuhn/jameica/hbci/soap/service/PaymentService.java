@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/PaymentService.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/10/21 00:17:58 $
+ * $Revision: 1.2 $
+ * $Date: 2008/10/21 23:14:11 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -18,6 +18,7 @@ import java.util.List;
 
 import javax.jws.WebParam;
 import javax.jws.WebResult;
+import javax.jws.WebService;
 
 import de.willuhn.jameica.hbci.soap.beans.Payment;
 
@@ -25,6 +26,7 @@ import de.willuhn.jameica.hbci.soap.beans.Payment;
 /**
  * Basis-Interface fuer Zahlungen.
  */
+@WebService
 public interface PaymentService<T extends Payment>
 {
   /**
@@ -61,6 +63,9 @@ public interface PaymentService<T extends Payment>
 
 /**********************************************************************
  * $Log: PaymentService.java,v $
+ * Revision 1.2  2008/10/21 23:14:11  willuhn
+ * @N Sammel-Auftraege werden jetzt zwar deployed - CXF wirft aber eine Exception, weil es versucht "Payment" statt "SammelLastschrift" zu deserialisieren
+ *
  * Revision 1.1  2008/10/21 00:17:58  willuhn
  * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
  *
