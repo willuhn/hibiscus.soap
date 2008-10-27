@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/server/Attic/ConnectorServiceImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/10/21 00:17:58 $
+ * $Revision: 1.4 $
+ * $Date: 2008/10/27 23:41:43 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -21,6 +21,7 @@ import de.willuhn.jameica.hbci.soap.service.impl.LastschriftServiceImpl;
 import de.willuhn.jameica.hbci.soap.service.impl.SammelLastschriftServiceImpl;
 import de.willuhn.jameica.hbci.soap.service.impl.SammelUeberweisungServiceImpl;
 import de.willuhn.jameica.hbci.soap.service.impl.UeberweisungServiceImpl;
+import de.willuhn.jameica.hbci.soap.service.impl.UmsatzServiceImpl;
 import de.willuhn.jameica.messaging.Message;
 import de.willuhn.jameica.messaging.MessageConsumer;
 import de.willuhn.jameica.messaging.QueryMessage;
@@ -123,6 +124,7 @@ public class ConnectorServiceImpl implements ConnectorService
         Application.getMessagingFactory().getMessagingQueue("jameica.soap.publish").sendMessage(new QueryMessage("/Lastschrift",new LastschriftServiceImpl()));
         Application.getMessagingFactory().getMessagingQueue("jameica.soap.publish").sendMessage(new QueryMessage("/SammelUeberweisung",new SammelUeberweisungServiceImpl()));
         Application.getMessagingFactory().getMessagingQueue("jameica.soap.publish").sendMessage(new QueryMessage("/SammelLastschrift",new SammelLastschriftServiceImpl()));
+        Application.getMessagingFactory().getMessagingQueue("jameica.soap.publish").sendMessage(new QueryMessage("/Umsatz",new UmsatzServiceImpl()));
       }
     }
   }
@@ -132,6 +134,9 @@ public class ConnectorServiceImpl implements ConnectorService
 
 /**********************************************************************
  * $Log: ConnectorServiceImpl.java,v $
+ * Revision 1.4  2008/10/27 23:41:43  willuhn
+ * @N Umsatz-Service
+ *
  * Revision 1.3  2008/10/21 00:17:58  willuhn
  * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
  *

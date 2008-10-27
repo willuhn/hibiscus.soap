@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/UeberweisungServiceImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/10/27 14:21:19 $
+ * $Revision: 1.4 $
+ * $Date: 2008/10/27 23:41:43 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -128,7 +128,7 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
     uh.setZweck(data.getZweck1());
     uh.setZweck2(data.getZweck2());
     
-    uh.setTermin(ueberweisung.getTermin());
+    uh.setTermin(ueberweisung.getDatum());
     uh.setTerminUeberweisung(ueberweisung.isTerminauftrag());
 
     uh.setKonto(kh);
@@ -163,7 +163,7 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
 
     Ueberweisung u = new Ueberweisung();
     u.setId(uh.getID());
-    u.setTermin(uh.getTermin());
+    u.setDatum(uh.getTermin());
     u.setTerminauftrag(uh.isTerminUeberweisung());
     u.setKonto(KontoServiceImpl.copy(uh.getKonto()));
     u.setPaymentData(data);
@@ -175,6 +175,9 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
 
 /**********************************************************************
  * $Log: UeberweisungServiceImpl.java,v $
+ * Revision 1.4  2008/10/27 23:41:43  willuhn
+ * @N Umsatz-Service
+ *
  * Revision 1.3  2008/10/27 14:21:19  willuhn
  * @N XmlSeeAlso-Tags
  *

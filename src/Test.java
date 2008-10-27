@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/Test.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/10/27 14:21:19 $
+ * $Revision: 1.5 $
+ * $Date: 2008/10/27 23:41:43 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -13,21 +13,21 @@
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import org.apache.cxf.configuration.jsse.TLSClientParameters;
-import org.apache.cxf.configuration.security.AuthorizationPolicy;
 import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 
 import de.willuhn.jameica.hbci.soap.beans.Konto;
-import de.willuhn.jameica.hbci.soap.beans.PaymentData;
-import de.willuhn.jameica.hbci.soap.beans.SammelUeberweisung;
-import de.willuhn.jameica.hbci.soap.service.SammelUeberweisungService;
+import de.willuhn.jameica.hbci.soap.beans.Umsatz;
+import de.willuhn.jameica.hbci.soap.service.UmsatzService;
 
 /**
  * Test-Client fuer den Zugriff via SOAP.
@@ -41,15 +41,15 @@ public class Test
   public static void main(String[] args) throws Exception
   {
     // URL
-    String url = "https://localhost:8080/soap/SammelUeberweisung";
+    String url = "https://localhost:8080/soap/Umsatz";
     
     JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
     factory.setUsername("admin");
     factory.setPassword("test");
-    factory.setServiceClass(SammelUeberweisungService.class);
+    factory.setServiceClass(UmsatzService.class);
     factory.setAddress(url);
     
-    SammelUeberweisungService client = (SammelUeberweisungService) factory.create();
+    UmsatzService client = (UmsatzService) factory.create();
     
     
     ////////////////////////////////////////////////////////////////////////////
@@ -68,26 +68,24 @@ public class Test
     ////////////////////////////////////////////////////////////////////////////
 
     Konto k = new Konto();
-    k.setId("1");
+    k.setId("2");
     
-    SammelUeberweisung u = new SammelUeberweisung();
-    u.setBezeichnung("Foo bar");
-    u.setKonto(k);
-    u.setTermin(new Date());
-    
-    for (int i=0;i<10;++i)
+    Calendar cal = Calendar.getInstance();
+    cal.set(Calendar.YEAR,2008);
+    cal.set(Calendar.MONTH,Calendar.AUGUST);
+    cal.set(Calendar.DAY_OF_MONTH,1);
+    Date from = cal.getTime();
+
+    cal.set(Calendar.MONTH,Calendar.SEPTEMBER);
+    cal.set(Calendar.DAY_OF_MONTH,30);
+    Date to = cal.getTime();
+
+    List<Umsatz> list = client.find(k,from,to,null);
+    for (int i=0;i<list.size();++i)
     {
-      PaymentData data = new PaymentData();
-      data.setBetrag((double) 100 + i);
-      data.setGegenkontoBlz("12345678");
-      data.setGegenkontoName("Max Mustermann");
-      data.setGegenkontoNummer("123457890");
-      data.setZweck1("SOAP 1");
-      data.setZweck2("SOAP 2");
-      u.add(data);
+      Umsatz u = list.get(i);
+      System.out.println(u.getId() + ": " + u.getDatum() + u.getKategorie() + ": " + u.getKonto().getKontonummer());
     }
-    
-    System.out.println(client.store(u));
   }
   
   /**
@@ -120,6 +118,9 @@ public class Test
 
 /*********************************************************************
  * $Log: Test.java,v $
+ * Revision 1.5  2008/10/27 23:41:43  willuhn
+ * @N Umsatz-Service
+ *
  * Revision 1.4  2008/10/27 14:21:19  willuhn
  * @N XmlSeeAlso-Tags
  *

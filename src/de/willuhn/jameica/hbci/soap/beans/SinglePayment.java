@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/SinglePayment.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/27 14:21:19 $
+ * $Revision: 1.3 $
+ * $Date: 2008/10/27 23:41:43 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -20,7 +20,11 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 /**
  * Abstracte SOAP-Bean fuer einen Einzelauftrag.
  */
-@XmlSeeAlso({Ueberweisung.class,Lastschrift.class})
+@XmlSeeAlso({
+  Ueberweisung.class,
+  Lastschrift.class,
+  Umsatz.class
+})
 public abstract class SinglePayment extends Payment
 {
   private PaymentData paymentData = null;
@@ -50,6 +54,9 @@ public abstract class SinglePayment extends Payment
 
 /**********************************************************************
  * $Log: SinglePayment.java,v $
+ * Revision 1.3  2008/10/27 23:41:43  willuhn
+ * @N Umsatz-Service
+ *
  * Revision 1.2  2008/10/27 14:21:19  willuhn
  * @N XmlSeeAlso-Tags
  *

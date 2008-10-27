@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/Umsatz.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/10/27 14:21:19 $
+ * $Revision: 1.2 $
+ * $Date: 2008/10/27 23:41:43 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -13,7 +13,6 @@
 
 package de.willuhn.jameica.hbci.soap.beans;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.jws.WebMethod;
@@ -21,10 +20,8 @@ import javax.jws.WebMethod;
 /**
  * Bean fuer eine Umsatzzeile.
  */
-public class Umsatz implements Serializable
+public class Umsatz extends SinglePayment
 {
-  private PaymentData paymentData = null;
-  private Date datum              = null;
   private Date valuta             = null;
   private Double saldo            = null;
   private String primanota        = null;
@@ -32,25 +29,6 @@ public class Umsatz implements Serializable
   private String kommentar        = null;
   private String kategorie        = null;
   
-  /**
-   * Liefert die Zahlungsdaten.
-   * @return die Zahlungsdaten.
-   */
-  public PaymentData getPaymentData()
-  {
-    return paymentData;
-  }
-
-  /**
-   * Speichert die Zahlungsdaten.
-   * @param paymentData
-   */
-  @WebMethod(exclude=true)
-  public void setPaymentData(PaymentData paymentData)
-  {
-    this.paymentData = paymentData;
-  }
-
   /**
    * Liefert die Kundenreferenz.
    * @return die Kundenreferenz.
@@ -68,25 +46,6 @@ public class Umsatz implements Serializable
   public void setKundenreferenz(String kundenreferenz)
   {
     this.kundenreferenz = kundenreferenz;
-  }
-
-  /**
-   * Liefert das Datum.
-   * @return das Datum.
-   */
-  public Date getDatum()
-  {
-    return this.datum;
-  }
-
-  /**
-   * Speichert das Datum.
-   * @param datum
-   */
-  @WebMethod(exclude=true)
-  public void setDatum(Date datum)
-  {
-    this.datum = datum;
   }
 
   /**
@@ -183,12 +142,14 @@ public class Umsatz implements Serializable
   {
     this.valuta = valuta;
   }
-  
 }
 
 
 /*********************************************************************
  * $Log: Umsatz.java,v $
+ * Revision 1.2  2008/10/27 23:41:43  willuhn
+ * @N Umsatz-Service
+ *
  * Revision 1.1  2008/10/27 14:21:19  willuhn
  * @N XmlSeeAlso-Tags
  *

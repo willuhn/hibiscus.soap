@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/Payment.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/27 14:21:19 $
+ * $Revision: 1.3 $
+ * $Date: 2008/10/27 23:41:43 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -26,13 +26,14 @@ import javax.xml.bind.annotation.XmlSeeAlso;
   Ueberweisung.class,
   Lastschrift.class,
   SammelUeberweisung.class,
-  SammelLastschrift.class
+  SammelLastschrift.class,
+  Umsatz.class
 })
 public abstract class Payment implements Serializable
 {
   private Konto konto = null;
   private String id   = null;
-  private Date termin = null;
+  private Date datum  = null;
 
   /**
    * Liefert das Konto, ueber das der Auftrag gesendet werden soll.
@@ -71,27 +72,30 @@ public abstract class Payment implements Serializable
   }
   
   /**
-   * Liefert einen optionalen Zieltermin.
-   * @return ein optionaler Zieltermin.
+   * Liefert das Datum.
+   * @return das Datum.
    */
-  public Date getTermin()
+  public Date getDatum()
   {
-    return termin;
+    return datum;
   }
   
   /**
-   * Speichert einen optionalen Zieltermin.
-   * @param termin der Zieltermin.
+   * Speichert das Datum.
+   * @param datum das Datum.
    */
-  public void setTermin(Date termin)
+  public void setDatum(Date datum)
   {
-    this.termin = termin;
+    this.datum = datum;
   }
 }
 
 
 /**********************************************************************
  * $Log: Payment.java,v $
+ * Revision 1.3  2008/10/27 23:41:43  willuhn
+ * @N Umsatz-Service
+ *
  * Revision 1.2  2008/10/27 14:21:19  willuhn
  * @N XmlSeeAlso-Tags
  *

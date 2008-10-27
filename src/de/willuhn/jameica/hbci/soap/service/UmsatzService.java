@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/UmsatzService.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/10/27 14:21:19 $
+ * $Revision: 1.2 $
+ * $Date: 2008/10/27 23:41:43 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -42,6 +42,8 @@ public interface UmsatzService
    * @param text Suchbegriff.
    * Optionale Angabe eines Suchbegriffes.
    * @return Liste der gefundenen Umsaetze.
+   * Die Umsaetze werden in chronologischer Reihenfolge geliefert.
+   * Also die alten zuersten, neue zuletzt.
    * @throws RemoteException
    */
   public @WebResult(name="umsaetze") List<Umsatz> find(@WebParam(name="konto") Konto konto,
@@ -53,6 +55,9 @@ public interface UmsatzService
 
 /**********************************************************************
  * $Log: UmsatzService.java,v $
+ * Revision 1.2  2008/10/27 23:41:43  willuhn
+ * @N Umsatz-Service
+ *
  * Revision 1.1  2008/10/27 14:21:19  willuhn
  * @N XmlSeeAlso-Tags
  *

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/LastschriftServiceImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/10/21 00:17:58 $
+ * $Revision: 1.2 $
+ * $Date: 2008/10/27 23:41:43 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -127,7 +127,7 @@ public class LastschriftServiceImpl extends AbstractService implements Lastschri
     uh.setZweck2(data.getZweck2());
 
     uh.setKonto(kh);
-    uh.setTermin(lastschrift.getTermin());
+    uh.setTermin(lastschrift.getDatum());
     
     try
     {
@@ -159,7 +159,7 @@ public class LastschriftServiceImpl extends AbstractService implements Lastschri
     
     Lastschrift u = new Lastschrift();
     u.setId(uh.getID());
-    u.setTermin(uh.getTermin());
+    u.setDatum(uh.getTermin());
     u.setKonto(KontoServiceImpl.copy(uh.getKonto()));
     u.setPaymentData(data);
     return u;
@@ -170,6 +170,9 @@ public class LastschriftServiceImpl extends AbstractService implements Lastschri
 
 /**********************************************************************
  * $Log: LastschriftServiceImpl.java,v $
+ * Revision 1.2  2008/10/27 23:41:43  willuhn
+ * @N Umsatz-Service
+ *
  * Revision 1.1  2008/10/21 00:17:58  willuhn
  * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
  *

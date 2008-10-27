@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/AbstractBundlePaymentService.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/27 14:21:19 $
+ * $Revision: 1.3 $
+ * $Date: 2008/10/27 23:41:43 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -127,7 +127,7 @@ public abstract class AbstractBundlePaymentService<T extends BundlePayment> exte
 
       uh.setBezeichnung(bundle.getBezeichnung());
       uh.setKonto(kh);
-      uh.setTermin(bundle.getTermin());
+      uh.setTermin(bundle.getDatum());
       uh.store();
       
       for (PaymentData data:payments)
@@ -179,7 +179,7 @@ public abstract class AbstractBundlePaymentService<T extends BundlePayment> exte
     T t = create();
     t.setId(uh.getID());
     t.setKonto(KontoServiceImpl.copy(uh.getKonto()));
-    t.setTermin(uh.getTermin());
+    t.setDatum(uh.getTermin());
     
     DBIterator buchungen = uh.getBuchungen();
     while (buchungen.hasNext())
@@ -215,6 +215,9 @@ public abstract class AbstractBundlePaymentService<T extends BundlePayment> exte
 
 /**********************************************************************
  * $Log: AbstractBundlePaymentService.java,v $
+ * Revision 1.3  2008/10/27 23:41:43  willuhn
+ * @N Umsatz-Service
+ *
  * Revision 1.2  2008/10/27 14:21:19  willuhn
  * @N XmlSeeAlso-Tags
  *
