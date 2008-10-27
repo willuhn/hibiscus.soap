@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/Konto.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/10/19 23:50:36 $
+ * $Revision: 1.2 $
+ * $Date: 2008/10/27 14:21:19 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -163,7 +163,7 @@ public class Konto implements Serializable
   
   /**
    * Liefert das Datum des aktuellen Saldo.
-   * @return
+   * @return das Datum des Saldos.
    */
   public Date getSaldoDatum()
   {
@@ -172,7 +172,7 @@ public class Konto implements Serializable
   
   /**
    * Liefert das Datum des aktuellen Saldo.
-   * @return
+   * @param saldoDatum das Datum des Saldos. 
    */
   @WebMethod(exclude=true)
   public void setSaldoDatum(Date saldoDatum)
@@ -203,6 +203,9 @@ public class Konto implements Serializable
 
 /**********************************************************************
  * $Log: Konto.java,v $
+ * Revision 1.2  2008/10/27 14:21:19  willuhn
+ * @N XmlSeeAlso-Tags
+ *
  * Revision 1.1  2008/10/19 23:50:36  willuhn
  * @N Erste funktionierende Version
  *

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/AbstractBundlePaymentService.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/10/21 00:17:58 $
+ * $Revision: 1.2 $
+ * $Date: 2008/10/27 14:21:19 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -31,6 +31,7 @@ import de.willuhn.util.ApplicationException;
 
 /**
  * Abstrakte Basis-Implementierung des Sammelauftrags-Service.
+ * @param <T> Die Zahlungsart.
  */
 public abstract class AbstractBundlePaymentService<T extends BundlePayment> extends AbstractService implements PaymentService<T>
 {
@@ -214,6 +215,9 @@ public abstract class AbstractBundlePaymentService<T extends BundlePayment> exte
 
 /**********************************************************************
  * $Log: AbstractBundlePaymentService.java,v $
+ * Revision 1.2  2008/10/27 14:21:19  willuhn
+ * @N XmlSeeAlso-Tags
+ *
  * Revision 1.1  2008/10/21 00:17:58  willuhn
  * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
  *

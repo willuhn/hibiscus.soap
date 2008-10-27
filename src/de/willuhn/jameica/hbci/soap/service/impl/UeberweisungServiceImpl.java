@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/UeberweisungServiceImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/21 00:17:58 $
+ * $Revision: 1.3 $
+ * $Date: 2008/10/27 14:21:19 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -37,7 +37,7 @@ import de.willuhn.util.ApplicationException;
 public class UeberweisungServiceImpl extends AbstractService implements UeberweisungService
 {
   /**
-   * @see de.willuhn.jameica.hbci.soap.service.TransferService#delete(java.lang.String)
+   * @see de.willuhn.jameica.hbci.soap.service.PaymentService#delete(java.lang.String)
    */
   public void delete(String id) throws RemoteException
   {
@@ -60,7 +60,7 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
   }
 
   /**
-   * @see de.willuhn.jameica.hbci.soap.service.TransferService#findAllOpen()
+   * @see de.willuhn.jameica.hbci.soap.service.PaymentService#findAllOpen()
    */
   public List<Ueberweisung> findAllOpen() throws RemoteException
   {
@@ -79,7 +79,7 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
   }
 
   /**
-   * @see de.willuhn.jameica.hbci.soap.service.TransferService#findById(java.lang.String)
+   * @see de.willuhn.jameica.hbci.soap.service.PaymentService#findById(java.lang.String)
    */
   public Ueberweisung findById(String id) throws RemoteException
   {
@@ -92,7 +92,7 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
   }
 
   /**
-   * @see de.willuhn.jameica.hbci.soap.service.TransferService#store(de.willuhn.jameica.hbci.soap.beans.AbstractTransfer)
+   * @see de.willuhn.jameica.hbci.soap.service.PaymentService#store(de.willuhn.jameica.hbci.soap.beans.Payment)
    */
   public String store(Ueberweisung ueberweisung) throws RemoteException
   {
@@ -175,6 +175,9 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
 
 /**********************************************************************
  * $Log: UeberweisungServiceImpl.java,v $
+ * Revision 1.3  2008/10/27 14:21:19  willuhn
+ * @N XmlSeeAlso-Tags
+ *
  * Revision 1.2  2008/10/21 00:17:58  willuhn
  * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
  *

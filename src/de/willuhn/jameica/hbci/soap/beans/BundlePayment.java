@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/BundlePayment.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/10/21 00:17:58 $
+ * $Revision: 1.2 $
+ * $Date: 2008/10/27 14:21:19 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -16,10 +16,13 @@ package de.willuhn.jameica.hbci.soap.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlSeeAlso;
+
 
 /**
  * SOAP-Bean fuer einen Sammel-Auftrag.
  */
+@XmlSeeAlso({SammelUeberweisung.class,SammelLastschrift.class})
 public abstract class BundlePayment extends Payment
 {
   private String bezeichnung         = null;
@@ -27,7 +30,7 @@ public abstract class BundlePayment extends Payment
   
   /**
    * Fuegt eine Buchung hinzu.
-   * @param buchung neue Buchung.
+   * @param payment neue Buchung.
    */
   public void add(PaymentData payment)
   {
@@ -47,7 +50,7 @@ public abstract class BundlePayment extends Payment
 
   /**
    * Speichert die Liste der Buchungen.
-   * @param buchungen Liste der Buchungen.
+   * @param payments Liste der Buchungen.
    */
   public void setBuchungen(List<PaymentData> payments)
   {
@@ -78,6 +81,9 @@ public abstract class BundlePayment extends Payment
 
 /**********************************************************************
  * $Log: BundlePayment.java,v $
+ * Revision 1.2  2008/10/27 14:21:19  willuhn
+ * @N XmlSeeAlso-Tags
+ *
  * Revision 1.1  2008/10/21 00:17:58  willuhn
  * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
  *

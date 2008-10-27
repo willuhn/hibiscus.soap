@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/Test.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/10/21 00:17:58 $
+ * $Revision: 1.4 $
+ * $Date: 2008/10/27 14:21:19 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -44,6 +44,8 @@ public class Test
     String url = "https://localhost:8080/soap/SammelUeberweisung";
     
     JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+    factory.setUsername("admin");
+    factory.setPassword("test");
     factory.setServiceClass(SammelUeberweisungService.class);
     factory.setAddress(url);
     
@@ -62,19 +64,14 @@ public class Test
       tcp.setDisableCNCheck(true);
       tcp.setTrustManagers(new TrustManager[]{new DummyTrustManager()});
       conduit.setTlsClientParameters(tcp);
-      
-      // Authentifizierung noetig?
-      AuthorizationPolicy auth = conduit.getAuthorization();
-      if (auth == null) auth = new AuthorizationPolicy();
-      auth.setUserName("admin");
-      auth.setPassword("test");
     }
     ////////////////////////////////////////////////////////////////////////////
 
     Konto k = new Konto();
-    k.setId("8");
+    k.setId("1");
     
     SammelUeberweisung u = new SammelUeberweisung();
+    u.setBezeichnung("Foo bar");
     u.setKonto(k);
     u.setTermin(new Date());
     
@@ -123,6 +120,9 @@ public class Test
 
 /*********************************************************************
  * $Log: Test.java,v $
+ * Revision 1.4  2008/10/27 14:21:19  willuhn
+ * @N XmlSeeAlso-Tags
+ *
  * Revision 1.3  2008/10/21 00:17:58  willuhn
  * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
  *

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/PaymentService.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/21 23:14:11 $
+ * $Revision: 1.3 $
+ * $Date: 2008/10/27 14:21:19 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -25,6 +25,7 @@ import de.willuhn.jameica.hbci.soap.beans.Payment;
 
 /**
  * Basis-Interface fuer Zahlungen.
+ * @param <T> Die Zahlungsart.
  */
 @WebService
 public interface PaymentService<T extends Payment>
@@ -46,7 +47,7 @@ public interface PaymentService<T extends Payment>
   
   /**
    * Legt einen neuen Auftrag an.
-   * @param transfer der Auftrag.
+   * @param payment der Auftrag.
    * @return die ID des erzeugten Auftrages.
    * @throws RemoteException
    */
@@ -63,6 +64,9 @@ public interface PaymentService<T extends Payment>
 
 /**********************************************************************
  * $Log: PaymentService.java,v $
+ * Revision 1.3  2008/10/27 14:21:19  willuhn
+ * @N XmlSeeAlso-Tags
+ *
  * Revision 1.2  2008/10/21 23:14:11  willuhn
  * @N Sammel-Auftraege werden jetzt zwar deployed - CXF wirft aber eine Exception, weil es versucht "Payment" statt "SammelLastschrift" zu deserialisieren
  *
