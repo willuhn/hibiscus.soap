@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/LastschriftServiceImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/27 23:41:43 $
+ * $Revision: 1.3 $
+ * $Date: 2009/04/29 21:15:15 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -125,6 +125,7 @@ public class LastschriftServiceImpl extends AbstractService implements Lastschri
     uh.setTextSchluessel(data.getTextschluessel());
     uh.setZweck(data.getZweck1());
     uh.setZweck2(data.getZweck2());
+    uh.setWeitereVerwendungszwecke(data.getWeitereVerwendungszwecke());
 
     uh.setKonto(kh);
     uh.setTermin(lastschrift.getDatum());
@@ -156,6 +157,7 @@ public class LastschriftServiceImpl extends AbstractService implements Lastschri
     data.setTextschluessel(uh.getTextSchluessel());
     data.setZweck1(uh.getZweck());
     data.setZweck2(uh.getZweck2());
+    data.setWeitereVerwendungszwecke(uh.getWeitereVerwendungszwecke());
     
     Lastschrift u = new Lastschrift();
     u.setId(uh.getID());
@@ -170,6 +172,9 @@ public class LastschriftServiceImpl extends AbstractService implements Lastschri
 
 /**********************************************************************
  * $Log: LastschriftServiceImpl.java,v $
+ * Revision 1.3  2009/04/29 21:15:15  willuhn
+ * @N Support fuer erweiterte Verwendungszwecke
+ *
  * Revision 1.2  2008/10/27 23:41:43  willuhn
  * @N Umsatz-Service
  *

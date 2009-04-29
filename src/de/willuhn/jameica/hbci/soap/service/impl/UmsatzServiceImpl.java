@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/UmsatzServiceImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/27 23:41:43 $
+ * $Revision: 1.3 $
+ * $Date: 2009/04/29 21:15:15 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -55,6 +55,7 @@ public class UmsatzServiceImpl implements UmsatzService
       String s = "%" + text.toLowerCase() + "%";
       list.addFilter("(LOWER(zweck) LIKE ? OR " +
           "LOWER(zweck2) LIKE ? OR " +
+          "LOWER(zweck3) LIKE ? OR " +
           "LOWER(empfaenger_name) LIKE ? OR " +
           "empfaenger_konto LIKE ? OR " +
           "empfaenger_blz LIKE ? OR " +
@@ -62,7 +63,7 @@ public class UmsatzServiceImpl implements UmsatzService
           "LOWER(art) LIKE ? OR " +
           "LOWER(customerref) LIKE ? OR " +
           "LOWER(kommentar) LIKE ?)",
-          new String[]{s,s,s,s,s,s,s,s,s});
+          new String[]{s,s,s,s,s,s,s,s,s,s});
     }
 
 
@@ -92,6 +93,7 @@ public class UmsatzServiceImpl implements UmsatzService
       data.setTextschluessel(uh.getArt());
       data.setZweck1(uh.getZweck());
       data.setZweck2(uh.getZweck2());
+      data.setWeitereVerwendungszwecke(uh.getWeitereVerwendungszwecke());
       u.setPaymentData(data);
 
       results.add(u);
@@ -104,6 +106,9 @@ public class UmsatzServiceImpl implements UmsatzService
 
 /*********************************************************************
  * $Log: UmsatzServiceImpl.java,v $
+ * Revision 1.3  2009/04/29 21:15:15  willuhn
+ * @N Support fuer erweiterte Verwendungszwecke
+ *
  * Revision 1.2  2008/10/27 23:41:43  willuhn
  * @N Umsatz-Service
  *

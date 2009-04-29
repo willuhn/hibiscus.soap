@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/UeberweisungServiceImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/10/27 23:41:43 $
+ * $Revision: 1.5 $
+ * $Date: 2009/04/29 21:15:15 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -127,6 +127,7 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
     uh.setTextSchluessel(data.getTextschluessel());
     uh.setZweck(data.getZweck1());
     uh.setZweck2(data.getZweck2());
+    uh.setWeitereVerwendungszwecke(data.getWeitereVerwendungszwecke());
     
     uh.setTermin(ueberweisung.getDatum());
     uh.setTerminUeberweisung(ueberweisung.isTerminauftrag());
@@ -160,6 +161,7 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
     data.setTextschluessel(uh.getTextSchluessel());
     data.setZweck1(uh.getZweck());
     data.setZweck2(uh.getZweck2());
+    data.setWeitereVerwendungszwecke(uh.getWeitereVerwendungszwecke());
 
     Ueberweisung u = new Ueberweisung();
     u.setId(uh.getID());
@@ -175,6 +177,9 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
 
 /**********************************************************************
  * $Log: UeberweisungServiceImpl.java,v $
+ * Revision 1.5  2009/04/29 21:15:15  willuhn
+ * @N Support fuer erweiterte Verwendungszwecke
+ *
  * Revision 1.4  2008/10/27 23:41:43  willuhn
  * @N Umsatz-Service
  *

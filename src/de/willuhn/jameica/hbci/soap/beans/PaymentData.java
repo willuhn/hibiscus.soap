@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/PaymentData.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/10/21 00:17:58 $
+ * $Revision: 1.2 $
+ * $Date: 2009/04/29 21:15:15 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -28,6 +28,7 @@ public class PaymentData implements Serializable
   private Double betrag           = null;
   private String zweck1           = null;
   private String zweck2           = null;
+  private String[] evz            = null;
   
   /**
    * Liefert den Betrag der Ueberweisung.
@@ -154,11 +155,33 @@ public class PaymentData implements Serializable
   {
     this.zweck2 = zweck2;
   }
+  
+  /**
+   * Liefert eine Liste erweiterter Verwendungszwecke.
+   * @return Liste erweiterter Verwendungszwecke.
+   */
+  public String[] getWeitereVerwendungszwecke()
+  {
+    return this.evz;
+  }
+  
+  /**
+   * Speichert die Liste erweiterter Verwendungszwecke.
+   * @param lines Liste erweiterter Verwendungszwecke.
+   */
+  public void setWeitereVerwendungszwecke(String[] lines)
+  {
+    this.evz = lines;
+  }
+
 }
 
 
 /**********************************************************************
  * $Log: PaymentData.java,v $
+ * Revision 1.2  2009/04/29 21:15:15  willuhn
+ * @N Support fuer erweiterte Verwendungszwecke
+ *
  * Revision 1.1  2008/10/21 00:17:58  willuhn
  * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
  *
