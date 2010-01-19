@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/Test.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/01/19 00:34:48 $
+ * $Revision: 1.7 $
+ * $Date: 2010/01/19 12:11:37 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -26,7 +26,10 @@ import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 
 import de.willuhn.jameica.hbci.soap.beans.Konto;
+import de.willuhn.jameica.hbci.soap.beans.PaymentData;
+import de.willuhn.jameica.hbci.soap.beans.SepaUeberweisung;
 import de.willuhn.jameica.hbci.soap.beans.Umsatz;
+import de.willuhn.jameica.hbci.soap.service.SepaUeberweisungService;
 import de.willuhn.jameica.hbci.soap.service.UmsatzService;
 
 /**
@@ -41,15 +44,15 @@ public class Test
   public static void main(String[] args) throws Exception
   {
     // URL
-    String url = "https://localhost:8080/soap/Umsatz";
+    String url = "https://localhost:8080/soap/SepaUeberweisung";
     
     JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
     factory.setUsername("admin");
     factory.setPassword("test");
-    factory.setServiceClass(UmsatzService.class);
+    factory.setServiceClass(SepaUeberweisungService.class);
     factory.setAddress(url);
     
-    UmsatzService client = (UmsatzService) factory.create();
+    SepaUeberweisungService client = (SepaUeberweisungService) factory.create();
     
     
     ////////////////////////////////////////////////////////////////////////////
@@ -69,19 +72,20 @@ public class Test
 
     Konto k = new Konto();
     k.setId("2");
-    
-    Calendar cal = Calendar.getInstance();
-    cal.set(Calendar.YEAR,2000);
-    cal.set(Calendar.MONTH,Calendar.JANUARY);
-    cal.set(Calendar.DAY_OF_MONTH,1);
-    Date from = cal.getTime();
 
-    List<Umsatz> list = client.find(k,from,null,null);
-    for (int i=0;i<list.size();++i)
-    {
-      Umsatz u = list.get(i);
-      System.out.println(u.getId() + ": " + u.getDatum() + ": " + u.getKategorie() + ": " + u.getKonto().getKontonummer());
-    }
+    SepaUeberweisung u = new SepaUeberweisung();
+    u.setDatum(new Date());
+    u.setKonto(k);
+    
+    PaymentData pd = new PaymentData();
+    pd.setBetrag(100d);
+    pd.setGegenkontoBlz("GENODEF1P05");
+    pd.setGegenkontoName("Max Mustermann");
+    pd.setGegenkontoNummer("DE87123456781234567890");
+    pd.setZweck1("Zeile 1");
+    u.setPaymentData(pd);
+    
+    System.out.println(client.store(u));
   }
   
   /**
@@ -114,6 +118,9 @@ public class Test
 
 /*********************************************************************
  * $Log: Test.java,v $
+ * Revision 1.7  2010/01/19 12:11:37  willuhn
+ * *** empty log message ***
+ *
  * Revision 1.6  2010/01/19 00:34:48  willuhn
  * @N Webservice fuer SEPA-Ueberweisungen
  * @C implizites Webservice-Deployment via AutoService
