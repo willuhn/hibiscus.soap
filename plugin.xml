@@ -16,10 +16,5 @@
     <include>hibiscus\.soap\.jar</include>
     <include>.*\.class</include>
   </classfinder>
-
-  <services>
-    <service name="connector" depends="" autostart="true" class="de.willuhn.jameica.hbci.soap.rmi.ConnectorService" />
-  </services>
-  
 </plugin>
 

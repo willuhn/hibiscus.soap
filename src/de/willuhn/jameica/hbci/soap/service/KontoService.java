@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/KontoService.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/19 23:50:36 $
+ * $Revision: 1.3 $
+ * $Date: 2010/01/19 00:34:48 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -21,13 +21,14 @@ import javax.jws.WebService;
 import javax.jws.WebParam;
 
 import de.willuhn.jameica.hbci.soap.beans.Konto;
+import de.willuhn.jameica.soap.AutoService;
 
 
 /**
  * Interface fuer den Konto-Webservice.
  */
-@WebService(name="Konto")
-public interface KontoService
+@WebService
+public interface KontoService extends AutoService
 {
   /**
    * Liefert alle Konten.
@@ -48,6 +49,11 @@ public interface KontoService
 
 /**********************************************************************
  * $Log: KontoService.java,v $
+ * Revision 1.3  2010/01/19 00:34:48  willuhn
+ * @N Webservice fuer SEPA-Ueberweisungen
+ * @C implizites Webservice-Deployment via AutoService
+ * @C Build-Script mit Versionsnummer und Plugin-Name aus plugin.xml
+ *
  * Revision 1.2  2008/10/19 23:50:36  willuhn
  * @N Erste funktionierende Version
  *

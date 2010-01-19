@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/UeberweisungServiceImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/04/29 21:15:15 $
+ * $Revision: 1.6 $
+ * $Date: 2010/01/19 00:34:48 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -33,7 +33,7 @@ import de.willuhn.util.ApplicationException;
 /**
  * Implementierung des Ueberweisung-Service.
  */
-@WebService(endpointInterface="de.willuhn.jameica.hbci.soap.service.UeberweisungService")
+@WebService(endpointInterface="de.willuhn.jameica.hbci.soap.service.UeberweisungService",name="Ueberweisung")
 public class UeberweisungServiceImpl extends AbstractService implements UeberweisungService
 {
   /**
@@ -177,6 +177,11 @@ public class UeberweisungServiceImpl extends AbstractService implements Ueberwei
 
 /**********************************************************************
  * $Log: UeberweisungServiceImpl.java,v $
+ * Revision 1.6  2010/01/19 00:34:48  willuhn
+ * @N Webservice fuer SEPA-Ueberweisungen
+ * @C implizites Webservice-Deployment via AutoService
+ * @C Build-Script mit Versionsnummer und Plugin-Name aus plugin.xml
+ *
  * Revision 1.5  2009/04/29 21:15:15  willuhn
  * @N Support fuer erweiterte Verwendungszwecke
  *

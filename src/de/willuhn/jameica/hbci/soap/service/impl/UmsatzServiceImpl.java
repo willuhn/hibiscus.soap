@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/UmsatzServiceImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/04/29 21:15:15 $
+ * $Revision: 1.4 $
+ * $Date: 2010/01/19 00:34:48 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -32,7 +32,7 @@ import de.willuhn.jameica.hbci.soap.service.UmsatzService;
 /**
  * Implementierung des Umsatz-Service.
  */
-@WebService(endpointInterface="de.willuhn.jameica.hbci.soap.service.UmsatzService")
+@WebService(endpointInterface="de.willuhn.jameica.hbci.soap.service.UmsatzService",name="Umsatz")
 public class UmsatzServiceImpl implements UmsatzService
 {
 
@@ -106,6 +106,11 @@ public class UmsatzServiceImpl implements UmsatzService
 
 /*********************************************************************
  * $Log: UmsatzServiceImpl.java,v $
+ * Revision 1.4  2010/01/19 00:34:48  willuhn
+ * @N Webservice fuer SEPA-Ueberweisungen
+ * @C implizites Webservice-Deployment via AutoService
+ * @C Build-Script mit Versionsnummer und Plugin-Name aus plugin.xml
+ *
  * Revision 1.3  2009/04/29 21:15:15  willuhn
  * @N Support fuer erweiterte Verwendungszwecke
  *

@@ -1,6 +1,6 @@
 /**********************************************************************
- * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/Plugin.java,v $
- * $Revision: 1.2 $
+ * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/SepaUeberweisung.java,v $
+ * $Revision: 1.1 $
  * $Date: 2010/01/19 00:34:48 $
  * $Author: willuhn $
  * $Locker:  $
@@ -11,27 +11,23 @@
  *
  **********************************************************************/
 
-package de.willuhn.jameica.hbci.soap;
+package de.willuhn.jameica.hbci.soap.beans;
 
-import de.willuhn.jameica.plugin.AbstractPlugin;
 
 
 /**
- * Plugin-Container.
+ * SOAP-Bean fuer eine SEPA-Ueberweisung.
  */
-public class Plugin extends AbstractPlugin
+public class SepaUeberweisung extends SinglePayment
 {
 }
 
 
 /**********************************************************************
- * $Log: Plugin.java,v $
- * Revision 1.2  2010/01/19 00:34:48  willuhn
+ * $Log: SepaUeberweisung.java,v $
+ * Revision 1.1  2010/01/19 00:34:48  willuhn
  * @N Webservice fuer SEPA-Ueberweisungen
  * @C implizites Webservice-Deployment via AutoService
  * @C Build-Script mit Versionsnummer und Plugin-Name aus plugin.xml
- *
- * Revision 1.1  2008/10/19 23:08:15  willuhn
- * @N Initial checkin
  *
  **********************************************************************/

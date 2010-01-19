@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/Test.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/10/27 23:41:43 $
+ * $Revision: 1.6 $
+ * $Date: 2010/01/19 00:34:48 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -71,20 +71,16 @@ public class Test
     k.setId("2");
     
     Calendar cal = Calendar.getInstance();
-    cal.set(Calendar.YEAR,2008);
-    cal.set(Calendar.MONTH,Calendar.AUGUST);
+    cal.set(Calendar.YEAR,2000);
+    cal.set(Calendar.MONTH,Calendar.JANUARY);
     cal.set(Calendar.DAY_OF_MONTH,1);
     Date from = cal.getTime();
 
-    cal.set(Calendar.MONTH,Calendar.SEPTEMBER);
-    cal.set(Calendar.DAY_OF_MONTH,30);
-    Date to = cal.getTime();
-
-    List<Umsatz> list = client.find(k,from,to,null);
+    List<Umsatz> list = client.find(k,from,null,null);
     for (int i=0;i<list.size();++i)
     {
       Umsatz u = list.get(i);
-      System.out.println(u.getId() + ": " + u.getDatum() + u.getKategorie() + ": " + u.getKonto().getKontonummer());
+      System.out.println(u.getId() + ": " + u.getDatum() + ": " + u.getKategorie() + ": " + u.getKonto().getKontonummer());
     }
   }
   
@@ -118,6 +114,11 @@ public class Test
 
 /*********************************************************************
  * $Log: Test.java,v $
+ * Revision 1.6  2010/01/19 00:34:48  willuhn
+ * @N Webservice fuer SEPA-Ueberweisungen
+ * @C implizites Webservice-Deployment via AutoService
+ * @C Build-Script mit Versionsnummer und Plugin-Name aus plugin.xml
+ *
  * Revision 1.5  2008/10/27 23:41:43  willuhn
  * @N Umsatz-Service
  *

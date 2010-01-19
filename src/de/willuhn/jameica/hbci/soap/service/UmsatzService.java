@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/UmsatzService.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/27 23:41:43 $
+ * $Revision: 1.3 $
+ * $Date: 2010/01/19 00:34:48 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -23,13 +23,14 @@ import javax.jws.WebService;
 
 import de.willuhn.jameica.hbci.soap.beans.Konto;
 import de.willuhn.jameica.hbci.soap.beans.Umsatz;
+import de.willuhn.jameica.soap.AutoService;
 
 
 /**
  * Interface fuer die Abfrage von Umsaetzen.
  */
-@WebService(name="Umsatz")
-public interface UmsatzService
+@WebService
+public interface UmsatzService extends AutoService
 {
   /**
    * Liefert eine Liste von Umsaetzen.
@@ -55,6 +56,11 @@ public interface UmsatzService
 
 /**********************************************************************
  * $Log: UmsatzService.java,v $
+ * Revision 1.3  2010/01/19 00:34:48  willuhn
+ * @N Webservice fuer SEPA-Ueberweisungen
+ * @C implizites Webservice-Deployment via AutoService
+ * @C Build-Script mit Versionsnummer und Plugin-Name aus plugin.xml
+ *
  * Revision 1.2  2008/10/27 23:41:43  willuhn
  * @N Umsatz-Service
  *
