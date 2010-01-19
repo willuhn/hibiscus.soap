@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/KontoServiceImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/01/19 00:34:48 $
+ * $Revision: 1.5 $
+ * $Date: 2010/01/19 12:16:37 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -75,6 +75,8 @@ public class KontoServiceImpl extends AbstractService implements KontoService
     k.setId(kh.getID());
     k.setKontonummer(kh.getKontonummer());
     k.setKundennummer(kh.getKundennummer());
+    k.setIban(kh.getIban());
+    k.setBic(kh.getBic());
     k.setName(kh.getName());
     k.setUnterkonto(kh.getUnterkonto());
     k.setSaldo(kh.getSaldo());
@@ -86,6 +88,9 @@ public class KontoServiceImpl extends AbstractService implements KontoService
 
 /**********************************************************************
  * $Log: KontoServiceImpl.java,v $
+ * Revision 1.5  2010/01/19 12:16:37  willuhn
+ * @N BIC/IBAN
+ *
  * Revision 1.4  2010/01/19 00:34:48  willuhn
  * @N Webservice fuer SEPA-Ueberweisungen
  * @C implizites Webservice-Deployment via AutoService

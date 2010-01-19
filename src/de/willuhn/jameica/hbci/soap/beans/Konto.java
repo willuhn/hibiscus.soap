@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/Konto.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/27 14:21:19 $
+ * $Revision: 1.3 $
+ * $Date: 2010/01/19 12:16:37 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -28,6 +28,8 @@ public class Konto implements Serializable
   private String kontonummer  = null;
   private String unterkonto   = null;
   private String blz          = null;
+  private String bic          = null;
+  private String iban         = null;
   private String bezeichnung  = null;
   private String name         = null;
   private String kundennummer = null;
@@ -97,6 +99,42 @@ public class Konto implements Serializable
     return kundennummer;
   }
   
+  /**
+   * Liefert die BIC.
+   * @return bic die BIC.
+   */
+  public String getBic()
+  {
+    return bic;
+  }
+
+  /**
+   * Speichert die BIC.
+   * @param bic bic die BIC.
+   */
+  public void setBic(String bic)
+  {
+    this.bic = bic;
+  }
+
+  /**
+   * Liefert die IBAN.
+   * @return iban die IBAN.
+   */
+  public String getIban()
+  {
+    return iban;
+  }
+
+  /**
+   * Speichert die IBAN.
+   * @param iban iban die IBAN.
+   */
+  public void setIban(String iban)
+  {
+    this.iban = iban;
+  }
+
   /**
    * Speichert die Kundennummer.
    * @param kundennummer die Kundennummer.
@@ -203,6 +241,9 @@ public class Konto implements Serializable
 
 /**********************************************************************
  * $Log: Konto.java,v $
+ * Revision 1.3  2010/01/19 12:16:37  willuhn
+ * @N BIC/IBAN
+ *
  * Revision 1.2  2008/10/27 14:21:19  willuhn
  * @N XmlSeeAlso-Tags
  *
