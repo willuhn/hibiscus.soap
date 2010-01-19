@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/Test.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/01/19 12:11:37 $
+ * $Revision: 1.8 $
+ * $Date: 2010/01/19 12:14:11 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -13,9 +13,7 @@
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -28,9 +26,7 @@ import org.apache.cxf.transport.http.HTTPConduit;
 import de.willuhn.jameica.hbci.soap.beans.Konto;
 import de.willuhn.jameica.hbci.soap.beans.PaymentData;
 import de.willuhn.jameica.hbci.soap.beans.SepaUeberweisung;
-import de.willuhn.jameica.hbci.soap.beans.Umsatz;
 import de.willuhn.jameica.hbci.soap.service.SepaUeberweisungService;
-import de.willuhn.jameica.hbci.soap.service.UmsatzService;
 
 /**
  * Test-Client fuer den Zugriff via SOAP.
@@ -118,6 +114,9 @@ public class Test
 
 /*********************************************************************
  * $Log: Test.java,v $
+ * Revision 1.8  2010/01/19 12:14:11  willuhn
+ * *** empty log message ***
+ *
  * Revision 1.7  2010/01/19 12:11:37  willuhn
  * *** empty log message ***
  *
