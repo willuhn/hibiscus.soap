@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/SepaUeberweisungServiceImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/01/19 00:34:48 $
+ * $Revision: 1.2 $
+ * $Date: 2010/01/19 11:36:10 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -123,10 +123,7 @@ public class SepaUeberweisungServiceImpl extends AbstractService implements Sepa
     uh.setGegenkontoBLZ(data.getGegenkontoBlz());
     uh.setGegenkontoName(data.getGegenkontoName());
     uh.setGegenkontoNummer(data.getGegenkontoNummer());
-    uh.setTextSchluessel(data.getTextschluessel());
     uh.setZweck(data.getZweck1());
-    uh.setZweck2(data.getZweck2());
-    uh.setWeitereVerwendungszwecke(data.getWeitereVerwendungszwecke());
     
     uh.setTermin(ueberweisung.getDatum());
 
@@ -174,6 +171,9 @@ public class SepaUeberweisungServiceImpl extends AbstractService implements Sepa
 
 /**********************************************************************
  * $Log: SepaUeberweisungServiceImpl.java,v $
+ * Revision 1.2  2010/01/19 11:36:10  willuhn
+ * @B Fehlende Annotations
+ *
  * Revision 1.1  2010/01/19 00:34:48  willuhn
  * @N Webservice fuer SEPA-Ueberweisungen
  * @C implizites Webservice-Deployment via AutoService

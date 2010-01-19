@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/SinglePayment.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/10/27 23:41:43 $
+ * $Revision: 1.4 $
+ * $Date: 2010/01/19 11:36:10 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -23,7 +23,8 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlSeeAlso({
   Ueberweisung.class,
   Lastschrift.class,
-  Umsatz.class
+  Umsatz.class,
+  SepaUeberweisung.class,
 })
 public abstract class SinglePayment extends Payment
 {
@@ -54,6 +55,9 @@ public abstract class SinglePayment extends Payment
 
 /**********************************************************************
  * $Log: SinglePayment.java,v $
+ * Revision 1.4  2010/01/19 11:36:10  willuhn
+ * @B Fehlende Annotations
+ *
  * Revision 1.3  2008/10/27 23:41:43  willuhn
  * @N Umsatz-Service
  *

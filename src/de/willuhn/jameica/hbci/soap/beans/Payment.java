@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/Payment.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/10/27 23:41:43 $
+ * $Revision: 1.4 $
+ * $Date: 2010/01/19 11:36:10 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
   Lastschrift.class,
   SammelUeberweisung.class,
   SammelLastschrift.class,
+  SepaUeberweisung.class,
   Umsatz.class
 })
 public abstract class Payment implements Serializable
@@ -93,6 +94,9 @@ public abstract class Payment implements Serializable
 
 /**********************************************************************
  * $Log: Payment.java,v $
+ * Revision 1.4  2010/01/19 11:36:10  willuhn
+ * @B Fehlende Annotations
+ *
  * Revision 1.3  2008/10/27 23:41:43  willuhn
  * @N Umsatz-Service
  *
