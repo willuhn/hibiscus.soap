@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/SinglePayment.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/01/19 11:36:10 $
+ * $Revision: 1.5 $
+ * $Date: 2010/01/20 10:39:26 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
   Ueberweisung.class,
   Lastschrift.class,
   Umsatz.class,
-  SepaUeberweisung.class,
+  SepaUeberweisung.class
 })
 public abstract class SinglePayment extends Payment
 {
@@ -55,6 +55,9 @@ public abstract class SinglePayment extends Payment
 
 /**********************************************************************
  * $Log: SinglePayment.java,v $
+ * Revision 1.5  2010/01/20 10:39:26  willuhn
+ * @B javac stoert sich offensichtlich am letzten Komma der Annotation
+ *
  * Revision 1.4  2010/01/19 11:36:10  willuhn
  * @B Fehlende Annotations
  *

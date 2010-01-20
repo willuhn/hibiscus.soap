@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/BundlePayment.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/10/27 14:21:19 $
+ * $Revision: 1.3 $
+ * $Date: 2010/01/20 10:39:26 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -22,7 +22,10 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 /**
  * SOAP-Bean fuer einen Sammel-Auftrag.
  */
-@XmlSeeAlso({SammelUeberweisung.class,SammelLastschrift.class})
+@XmlSeeAlso({
+  SammelUeberweisung.class,
+  SammelLastschrift.class
+})
 public abstract class BundlePayment extends Payment
 {
   private String bezeichnung         = null;
@@ -81,6 +84,9 @@ public abstract class BundlePayment extends Payment
 
 /**********************************************************************
  * $Log: BundlePayment.java,v $
+ * Revision 1.3  2010/01/20 10:39:26  willuhn
+ * @B javac stoert sich offensichtlich am letzten Komma der Annotation
+ *
  * Revision 1.2  2008/10/27 14:21:19  willuhn
  * @N XmlSeeAlso-Tags
  *
