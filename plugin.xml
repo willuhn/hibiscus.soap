@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<plugin name="hibiscus.soap" version="1.0" class="de.willuhn.jameica.hbci.soap.Plugin">
+<plugin xmlns="http://www.willuhn.de/schema/jameica-plugin"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.willuhn.de/schema/jameica-plugin http://www.willuhn.de/schema/jameica-plugin-1.2.xsd"
+        name="hibiscus.soap" version="1.0" class="de.willuhn.jameica.hbci.soap.Plugin">
 
   <description>SOAP-Connector fuer Hibiscus</description>
-  <url></url>
-  <homepage>http://www.willuhn.de/projects/hibiscus</homepage>
-  <license>proprietary</license>
+  <url>https://willuhn.de/products/hibiscus/releases/nightly/hibiscus.soap-1.0-nightly.zip</url>
+  <homepage>http://www.willuhn.de/products/hibiscus</homepage>
+  <license>GPL - http://www.gnu.org/copyleft/gpl.html</license>
 
-  <requires jameica="1.9+">
-    <import plugin="jameica.soap" version="1.0+"/>
-    <import plugin="hibiscus"     version="1.11+"/>
-  </requires>
+  <requires jameica="1.9+">
+    <import plugin="jameica.soap" version="1.0+"/>
+    <import plugin="hibiscus"     version="1.11+"/>
+  </requires>
 
   <classfinder>
     <include>hibiscus\.soap\.jar</include>
