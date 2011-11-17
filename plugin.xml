@@ -6,7 +6,7 @@
         name="hibiscus.soap" version="1.0" class="de.willuhn.jameica.hbci.soap.Plugin">
 
   <description>SOAP-Connector fuer Hibiscus</description>
-  <url>https://willuhn.de/products/hibiscus/releases/nightly/hibiscus.soap-1.0-nightly.zip</url>
+  <url>https://www.willuhn.de/products/hibiscus/releases/nightly/hibiscus.soap-1.0-nightly.zip</url>
   <homepage>http://www.willuhn.de/products/hibiscus</homepage>
   <license>GPL - http://www.gnu.org/copyleft/gpl.html</license>
 
