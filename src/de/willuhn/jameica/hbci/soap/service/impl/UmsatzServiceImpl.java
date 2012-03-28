@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/service/impl/UmsatzServiceImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/01/19 00:34:48 $
+ * $Revision: 1.5 $
+ * $Date: 2012/03/28 22:18:08 $
  * $Author: willuhn $
  * $Locker:  $
  * $State: Exp $
@@ -21,13 +21,13 @@ import java.util.List;
 import javax.jws.WebService;
 
 import de.willuhn.datasource.rmi.DBIterator;
-import de.willuhn.jameica.hbci.HBCIProperties;
 import de.willuhn.jameica.hbci.rmi.UmsatzTyp;
 import de.willuhn.jameica.hbci.server.UmsatzUtil;
 import de.willuhn.jameica.hbci.soap.beans.Konto;
 import de.willuhn.jameica.hbci.soap.beans.PaymentData;
 import de.willuhn.jameica.hbci.soap.beans.Umsatz;
 import de.willuhn.jameica.hbci.soap.service.UmsatzService;
+import de.willuhn.jameica.util.DateUtil;
 
 /**
  * Implementierung des Umsatz-Service.
@@ -47,8 +47,8 @@ public class UmsatzServiceImpl implements UmsatzService
     if (konto != null && konto.getId() != null && konto.getId().length() > 0)
       list.addFilter("konto_id = ?",new Object[]{konto.getId()});
     
-    if (von != null) list.addFilter("valuta >= ?", new Object[] {new java.sql.Date(HBCIProperties.startOfDay(von).getTime())});
-    if (bis != null) list.addFilter("valuta <= ?", new Object[] {new java.sql.Date(HBCIProperties.endOfDay(bis).getTime())});
+    if (von != null) list.addFilter("valuta >= ?", new Object[] {new java.sql.Date(DateUtil.startOfDay(von).getTime())});
+    if (bis != null) list.addFilter("valuta <= ?", new Object[] {new java.sql.Date(DateUtil.endOfDay(bis).getTime())});
 
     if (text != null && text.length() > 0)
     {
@@ -106,6 +106,9 @@ public class UmsatzServiceImpl implements UmsatzService
 
 /*********************************************************************
  * $Log: UmsatzServiceImpl.java,v $
+ * Revision 1.5  2012/03/28 22:18:08  willuhn
+ * @C Umstellung auf DateUtil
+ *
  * Revision 1.4  2010/01/19 00:34:48  willuhn
  * @N Webservice fuer SEPA-Ueberweisungen
  * @C implizites Webservice-Deployment via AutoService
