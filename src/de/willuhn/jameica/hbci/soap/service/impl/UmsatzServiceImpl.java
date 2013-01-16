@@ -45,7 +45,17 @@ public class UmsatzServiceImpl implements UmsatzService
     DBIterator list = UmsatzUtil.getUmsaetze();
     
     if (konto != null && konto.getId() != null && konto.getId().length() > 0)
-      list.addFilter("konto_id = ?",new Object[]{konto.getId()});
+    {
+      try
+      {
+        Integer i = Integer.parseInt(konto.getId());
+        list.addFilter("konto_id = ?",i);
+      }
+      catch (NumberFormatException e)
+      {
+        throw new RemoteException("invalid konto ID " + konto.getId());
+      }
+    }
     
     if (von != null) list.addFilter("valuta >= ?", new Object[] {new java.sql.Date(DateUtil.startOfDay(von).getTime())});
     if (bis != null) list.addFilter("valuta <= ?", new Object[] {new java.sql.Date(DateUtil.endOfDay(bis).getTime())});
@@ -62,8 +72,7 @@ public class UmsatzServiceImpl implements UmsatzService
           "LOWER(primanota) LIKE ? OR " +
           "LOWER(art) LIKE ? OR " +
           "LOWER(customerref) LIKE ? OR " +
-          "LOWER(kommentar) LIKE ?)",
-          new String[]{s,s,s,s,s,s,s,s,s,s});
+          "LOWER(kommentar) LIKE ?)",s,s,s,s,s,s,s,s,s,s);
     }
 
 
