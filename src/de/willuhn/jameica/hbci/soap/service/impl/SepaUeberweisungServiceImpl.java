@@ -124,6 +124,7 @@ public class SepaUeberweisungServiceImpl extends AbstractService implements Sepa
     uh.setGegenkontoName(data.getGegenkontoName());
     uh.setGegenkontoNummer(data.getGegenkontoNummer());
     uh.setZweck(data.getZweck1());
+    uh.setEndtoEndId(ueberweisung.getEndToEndId());
     
     uh.setTermin(ueberweisung.getDatum());
 
@@ -162,6 +163,7 @@ public class SepaUeberweisungServiceImpl extends AbstractService implements Sepa
     u.setId(uh.getID());
     u.setDatum(uh.getTermin());
     u.setKonto(KontoServiceImpl.copy(uh.getKonto()));
+    u.setEndToEndId(uh.getEndtoEndId());
     u.setPaymentData(data);
     return u;
   }

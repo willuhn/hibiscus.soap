@@ -20,14 +20,24 @@ package de.willuhn.jameica.hbci.soap.beans;
  */
 public class SepaUeberweisung extends SinglePayment
 {
+  private String endToEndId = null;
+  
+  /**
+   * Liefert die EndtoEnd-ID.
+   * @return die EndtoEnd-ID.
+   */
+  public String getEndToEndId()
+  {
+    return this.endToEndId;
+  }
+  
+  /**
+   * Speichert die EndtoEnd-ID.
+   * @param id die EndtoEnd-ID.
+   */
+  public void setEndToEndId(String id)
+  {
+    this.endToEndId = id;
+  }
+
 }
-
-
-/**********************************************************************
- * $Log: SepaUeberweisung.java,v $
- * Revision 1.1  2010/01/19 00:34:48  willuhn
- * @N Webservice fuer SEPA-Ueberweisungen
- * @C implizites Webservice-Deployment via AutoService
- * @C Build-Script mit Versionsnummer und Plugin-Name aus plugin.xml
- *
- **********************************************************************/
