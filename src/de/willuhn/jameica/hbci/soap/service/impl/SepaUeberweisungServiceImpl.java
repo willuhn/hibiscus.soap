@@ -156,8 +156,6 @@ public class SepaUeberweisungServiceImpl extends AbstractService implements Sepa
     data.setGegenkontoNummer(uh.getGegenkontoNummer());
     data.setTextschluessel(uh.getTextSchluessel());
     data.setZweck1(uh.getZweck());
-    data.setZweck2(uh.getZweck2());
-    data.setWeitereVerwendungszwecke(uh.getWeitereVerwendungszwecke());
 
     SepaUeberweisung u = new SepaUeberweisung();
     u.setId(uh.getID());
@@ -169,16 +167,3 @@ public class SepaUeberweisungServiceImpl extends AbstractService implements Sepa
   }
 
 }
-
-
-/**********************************************************************
- * $Log: SepaUeberweisungServiceImpl.java,v $
- * Revision 1.2  2010/01/19 11:36:10  willuhn
- * @B Fehlende Annotations
- *
- * Revision 1.1  2010/01/19 00:34:48  willuhn
- * @N Webservice fuer SEPA-Ueberweisungen
- * @C implizites Webservice-Deployment via AutoService
- * @C Build-Script mit Versionsnummer und Plugin-Name aus plugin.xml
- *
- **********************************************************************/
