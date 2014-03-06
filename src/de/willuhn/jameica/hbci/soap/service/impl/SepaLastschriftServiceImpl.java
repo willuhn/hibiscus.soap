@@ -161,16 +161,14 @@ public class SepaLastschriftServiceImpl extends AbstractService implements SepaL
     data.setGegenkontoBlz(uh.getGegenkontoBLZ());
     data.setGegenkontoName(uh.getGegenkontoName());
     data.setGegenkontoNummer(uh.getGegenkontoNummer());
-    data.setTextschluessel(uh.getTextSchluessel());
     data.setZweck1(uh.getZweck());
-    data.setZweck2(uh.getZweck2());
-    data.setWeitereVerwendungszwecke(uh.getWeitereVerwendungszwecke());
 
     de.willuhn.jameica.hbci.soap.beans.SepaLastschrift l = new de.willuhn.jameica.hbci.soap.beans.SepaLastschrift();
     l.setId(uh.getID());
     l.setDatum(uh.getTermin());
     l.setKonto(KontoServiceImpl.copy(uh.getKonto()));
     l.setEndToEndId(uh.getEndtoEndId());
+    l.setMandateId(uh.getMandateId());
     l.setCreditorId(uh.getCreditorId());
     l.setSignatureDate(uh.getSignatureDate());
     l.setSequenceType(SepaLastSequenceType.valueOf(uh.getSequenceType().name()));
