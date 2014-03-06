@@ -15,10 +15,15 @@ package de.willuhn.jameica.hbci.soap.beans;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlSeeAlso;
+
 
 /**
  * Container fuer die Basis-Daten einer Zahlung.
  */
+@XmlSeeAlso({
+  SepaSammelBuchung.class,
+})
 public class PaymentData implements Serializable
 {
   private String textschluessel   = null;

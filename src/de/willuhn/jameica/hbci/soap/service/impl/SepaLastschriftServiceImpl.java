@@ -25,6 +25,8 @@ import de.willuhn.jameica.hbci.rmi.HBCIDBService;
 import de.willuhn.jameica.hbci.rmi.SepaLastschrift;
 import de.willuhn.jameica.hbci.soap.beans.Konto;
 import de.willuhn.jameica.hbci.soap.beans.PaymentData;
+import de.willuhn.jameica.hbci.soap.beans.SepaLastSequenceType;
+import de.willuhn.jameica.hbci.soap.beans.SepaLastType;
 import de.willuhn.jameica.hbci.soap.service.SepaLastschriftService;
 import de.willuhn.util.ApplicationException;
 
@@ -127,9 +129,9 @@ public class SepaLastschriftServiceImpl extends AbstractService implements SepaL
     lh.setMandateId(lastschrift.getMandateId());
     lh.setCreditorId(lastschrift.getCreditorId());
     lh.setSignatureDate(lastschrift.getSignatureDate());
-    lh.setSequenceType(lastschrift.getSequenceType());
+    lh.setSequenceType(de.willuhn.jameica.hbci.rmi.SepaLastSequenceType.valueOf(lastschrift.getSequenceType().name()));
     lh.setTargetDate(lastschrift.getTargetDate());
-    lh.setType(lastschrift.getType());
+    lh.setType(de.willuhn.jameica.hbci.rmi.SepaLastType.valueOf(lastschrift.getType().name()));
     
     lh.setTermin(lastschrift.getDatum());
 
@@ -171,9 +173,9 @@ public class SepaLastschriftServiceImpl extends AbstractService implements SepaL
     l.setEndToEndId(uh.getEndtoEndId());
     l.setCreditorId(uh.getCreditorId());
     l.setSignatureDate(uh.getSignatureDate());
-    l.setSequenceType(uh.getSequenceType());
+    l.setSequenceType(SepaLastSequenceType.valueOf(uh.getSequenceType().name()));
     l.setTargetDate(uh.getTargetDate());
-    l.setType(uh.getType());
+    l.setType(SepaLastType.valueOf(uh.getType().name()));
     
     l.setPaymentData(data);
     return l;

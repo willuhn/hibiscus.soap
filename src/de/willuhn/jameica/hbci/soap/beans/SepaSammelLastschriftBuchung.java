@@ -9,18 +9,14 @@ package de.willuhn.jameica.hbci.soap.beans;
 
 import java.util.Date;
 
-
 /**
- * SOAP-Bean fuer eine SEPA-Lastschrift.
+ * SOAP-Bean fuer eine einzelne Buchung in einer SEPA-Sammellastschrift.
  */
-public class SepaLastschrift extends SepaPayment
+public class SepaSammelLastschriftBuchung extends SepaSammelBuchung
 {
   private String mandateId = null;
   private String creditorId = null;
   private Date signatureDate = null;
-  private SepaLastSequenceType sequenceType = null;
-  private Date targetDate = null;
-  private SepaLastType type = null;
   
   /**
    * Liefert die Mandats-ID.
@@ -76,59 +72,6 @@ public class SepaLastschrift extends SepaPayment
     this.signatureDate = date;
   }
   
-  /**
-   * Liefert den Sequenz-Typ der Lastschrft.
-   * @return der Sequenz-Typ der Lastschrift.
-   */
-  public SepaLastSequenceType getSequenceType()
-  {
-    return this.sequenceType;
-  }
-  
-  /**
-   * Speichert den Sequenz-Typ der Lastschrift.
-   * @param type der Sequenz-Typ der Lastschrift.
-   */
-  public void setSequenceType(SepaLastSequenceType type)
-  {
-    this.sequenceType = type;
-  }
-  
-  /**
-   * Liefert das Ziel-Ausfuehrungsdatum bei der Bank.
-   * @return das Ziel-Ausfuehrungsdatum bei der Bank.
-   */
-  public Date getTargetDate()
-  {
-    return this.targetDate;
-  }
-  
-  /**
-   * Speichert das Ziel-Ausfuehrungsdatum bei der Bank.
-   * @param date das Ziel-Ausfuehrungsdatum bei der Bank.
-   */
-  public void setTargetDate(Date date)
-  {
-    this.targetDate = date;
-  }
-  
-  /**
-   * Liefert den Typ der Lastschrft.
-   * @return der Typ der Lastschrift.
-   */
-  public SepaLastType getType()
-  {
-    return this.type;
-  }
-  
-  /**
-   * Speichert den Typ der Lastschrift.
-   * @param type der Typ der Lastschrift.
-   */
-  public void setType(SepaLastType type)
-  {
-    this.type = type;
-  }
-  
-
 }
+
+

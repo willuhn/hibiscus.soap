@@ -1,12 +1,6 @@
 /**********************************************************************
- * $Source: /cvsroot/hibiscus/hibiscus.soap/src/Test.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/01/19 12:14:11 $
- * $Author: willuhn $
- * $Locker:  $
- * $State: Exp $
  *
- * Copyright (c) by willuhn software & services
+ * Copyright (c) by Olaf Willuhn
  * All rights reserved
  *
  **********************************************************************/
@@ -14,6 +8,7 @@
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Date;
+import java.util.List;
 
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -24,9 +19,11 @@ import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 
 import de.willuhn.jameica.hbci.soap.beans.Konto;
-import de.willuhn.jameica.hbci.soap.beans.PaymentData;
-import de.willuhn.jameica.hbci.soap.beans.SepaUeberweisung;
-import de.willuhn.jameica.hbci.soap.service.SepaUeberweisungService;
+import de.willuhn.jameica.hbci.soap.beans.SepaLastSequenceType;
+import de.willuhn.jameica.hbci.soap.beans.SepaLastType;
+import de.willuhn.jameica.hbci.soap.beans.SepaSammelLastschrift;
+import de.willuhn.jameica.hbci.soap.beans.SepaSammelLastschriftBuchung;
+import de.willuhn.jameica.hbci.soap.service.SepaSammelLastschriftService;
 
 /**
  * Test-Client fuer den Zugriff via SOAP.
@@ -40,16 +37,15 @@ public class Test
   public static void main(String[] args) throws Exception
   {
     // URL
-    String url = "https://localhost:8080/soap/SepaUeberweisung";
+    String url = "https://localhost:8080/soap/SepaSammelLastschrift";
     
     JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
     factory.setUsername("admin");
     factory.setPassword("test");
-    factory.setServiceClass(SepaUeberweisungService.class);
+    factory.setServiceClass(SepaSammelLastschriftService.class);
     factory.setAddress(url);
     
-    SepaUeberweisungService client = (SepaUeberweisungService) factory.create();
-    
+    SepaSammelLastschriftService client = (SepaSammelLastschriftService) factory.create();
     
     ////////////////////////////////////////////////////////////////////////////
     // Ggf SSL initialisieren
@@ -67,21 +63,48 @@ public class Test
     ////////////////////////////////////////////////////////////////////////////
 
     Konto k = new Konto();
-    k.setId("2");
+    k.setId("11");
 
-    SepaUeberweisung u = new SepaUeberweisung();
+    SepaSammelLastschrift u = new SepaSammelLastschrift();
     u.setDatum(new Date());
+    u.setBezeichnung("Test");
+    u.setSequenceType(SepaLastSequenceType.FRST);
+    u.setTargetDate(new Date());
+    u.setType(SepaLastType.CORE);
     u.setKonto(k);
+
+    for (int i=0;i<3;++i)
+    {
+      SepaSammelLastschriftBuchung buchung = new SepaSammelLastschriftBuchung();
+      buchung.setBetrag(100d + i);
+      buchung.setGegenkontoBlz("GENODEF1P05"); // BIC
+      buchung.setGegenkontoName("Max Mustermann");
+      buchung.setGegenkontoNummer("DE87123456781234567890"); // IBAN
+      buchung.setZweck1("Zeile");
+      buchung.setCreditorId(String.valueOf(i));
+      buchung.setEndToEndId("NOTPROVIDED");
+      buchung.setMandateId("12345");
+      buchung.setSignatureDate(new Date());
+      u.add(buchung);
+    }
     
-    PaymentData pd = new PaymentData();
-    pd.setBetrag(100d);
-    pd.setGegenkontoBlz("GENODEF1P05");
-    pd.setGegenkontoName("Max Mustermann");
-    pd.setGegenkontoNummer("DE87123456781234567890");
-    pd.setZweck1("Zeile 1");
-    u.setPaymentData(pd);
+    String id = client.store(u);
     
-    System.out.println(client.store(u));
+    SepaSammelLastschrift l = client.findById(id);
+    System.out.println(l.getBezeichnung());
+    System.out.println(l.getId());
+    System.out.println(l.getDatum());
+    System.out.println(l.getSequenceType());
+    System.out.println(l.getType());
+    List<SepaSammelLastschriftBuchung> buchungen = l.getBuchungen();
+    for (SepaSammelLastschriftBuchung b:buchungen)
+    {
+      System.out.println(b.getCreditorId());
+      System.out.println(b.getEndToEndId());
+      System.out.println(b.getBetrag());
+    }
+    
+    
   }
   
   /**
@@ -110,34 +133,3 @@ public class Test
     
   }
 }
-
-
-/*********************************************************************
- * $Log: Test.java,v $
- * Revision 1.8  2010/01/19 12:14:11  willuhn
- * *** empty log message ***
- *
- * Revision 1.7  2010/01/19 12:11:37  willuhn
- * *** empty log message ***
- *
- * Revision 1.6  2010/01/19 00:34:48  willuhn
- * @N Webservice fuer SEPA-Ueberweisungen
- * @C implizites Webservice-Deployment via AutoService
- * @C Build-Script mit Versionsnummer und Plugin-Name aus plugin.xml
- *
- * Revision 1.5  2008/10/27 23:41:43  willuhn
- * @N Umsatz-Service
- *
- * Revision 1.4  2008/10/27 14:21:19  willuhn
- * @N XmlSeeAlso-Tags
- *
- * Revision 1.3  2008/10/21 00:17:58  willuhn
- * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
- *
- * Revision 1.2  2008/10/20 00:26:22  willuhn
- * @N Ueberweisung-Service
- *
- * Revision 1.1  2008/10/19 23:50:36  willuhn
- * @N Erste funktionierende Version
- *
- **********************************************************************/

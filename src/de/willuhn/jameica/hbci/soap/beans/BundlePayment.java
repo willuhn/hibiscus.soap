@@ -21,24 +21,26 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 
 /**
  * SOAP-Bean fuer einen Sammel-Auftrag.
+ * @param <T> der konkrete Typ der Buchungen.
  */
 @XmlSeeAlso({
   SammelUeberweisung.class,
-  SammelLastschrift.class
+  SammelLastschrift.class,
+  SepaSammelLastschrift.class
 })
-public abstract class BundlePayment extends Payment
+public abstract class BundlePayment<T extends PaymentData> extends Payment
 {
-  private String bezeichnung         = null;
-  private List<PaymentData> payments = null;
+  private String bezeichnung = null;
+  private List<T> payments   = null;
   
   /**
    * Fuegt eine Buchung hinzu.
    * @param payment neue Buchung.
    */
-  public void add(PaymentData payment)
+  public void add(T payment)
   {
     if (this.payments == null)
-      this.payments = new ArrayList<PaymentData>();
+      this.payments = new ArrayList<T>();
     this.payments.add(payment);
   }
 
@@ -46,7 +48,7 @@ public abstract class BundlePayment extends Payment
    * Liefert die Liste der Buchungen.
    * @return Liste der Buchungen.
    */
-  public List<PaymentData> getBuchungen()
+  public List<T> getBuchungen()
   {
     return payments;
   }
@@ -55,7 +57,7 @@ public abstract class BundlePayment extends Payment
    * Speichert die Liste der Buchungen.
    * @param payments Liste der Buchungen.
    */
-  public void setBuchungen(List<PaymentData> payments)
+  public void setBuchungen(List<T> payments)
   {
     this.payments = payments;
   }

@@ -11,70 +11,13 @@ import java.util.Date;
 
 
 /**
- * SOAP-Bean fuer eine SEPA-Lastschrift.
+ * SEPA-Sammel-Lastschrift.
  */
-public class SepaLastschrift extends SepaPayment
+public class SepaSammelLastschrift extends BundlePayment<SepaSammelLastschriftBuchung>
 {
-  private String mandateId = null;
-  private String creditorId = null;
-  private Date signatureDate = null;
   private SepaLastSequenceType sequenceType = null;
   private Date targetDate = null;
   private SepaLastType type = null;
-  
-  /**
-   * Liefert die Mandats-ID.
-   * @return die Mandats-ID.
-   */
-  public String getMandateId()
-  {
-    return this.mandateId;
-  }
-  
-  /**
-   * Speichert die Mandats-ID.
-   * @param id die Mandats-ID.
-   */
-  public void setMandateId(String id)
-  {
-    this.mandateId = id;
-  }
-  
-  /**
-   * Liefert die Glaeubiger-ID.
-   * @return die Glaeubiger-ID.
-   */
-  public String getCreditorId()
-  {
-    return this.creditorId;
-  }
-  
-  /**
-   * Speichert die Glaeubiger-ID.
-   * @param id die Glaeubiger-ID.
-   */
-  public void setCreditorId(String id)
-  {
-    this.creditorId = id;
-  }
-
-  /**
-   * Liefert das Datum der Unterschrift des Mandats.
-   * @return das Datum der Unterschrift des Mandats.
-   */
-  public Date getSignatureDate()
-  {
-    return this.signatureDate;
-  }
-  
-  /**
-   * Speichert das Datum der Unterschrift des Mandats.
-   * @param date das Datum der Unterschrift des Mandats.
-   */
-  public void setSignatureDate(Date date)
-  {
-    this.signatureDate = date;
-  }
   
   /**
    * Liefert den Sequenz-Typ der Lastschrft.
@@ -129,6 +72,5 @@ public class SepaLastschrift extends SepaPayment
   {
     this.type = type;
   }
-  
 
 }
