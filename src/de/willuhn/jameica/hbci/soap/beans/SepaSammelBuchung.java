@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  * SOAP-Bean fuer eine einzelne Buchung in einem SEPA-Sammelauftrag.
  */
 @XmlSeeAlso({
-  SepaSammelLastschriftBuchung.class,
+  SepaSammelLastschriftBuchung.class
 })
 public class SepaSammelBuchung extends PaymentData
 {

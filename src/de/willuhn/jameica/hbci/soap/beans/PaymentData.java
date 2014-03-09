@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  * Container fuer die Basis-Daten einer Zahlung.
  */
 @XmlSeeAlso({
-  SepaSammelBuchung.class,
+  SepaSammelBuchung.class
 })
 public class PaymentData implements Serializable
 {
