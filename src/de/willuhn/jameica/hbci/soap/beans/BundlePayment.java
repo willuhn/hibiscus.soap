@@ -1,12 +1,6 @@
 /**********************************************************************
- * $Source: /cvsroot/hibiscus/hibiscus.soap/src/de/willuhn/jameica/hbci/soap/beans/BundlePayment.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/01/20 10:39:26 $
- * $Author: willuhn $
- * $Locker:  $
- * $State: Exp $
  *
- * Copyright (c) by willuhn software & services
+ * Copyright (c) by Olaf Willuhn
  * All rights reserved
  *
  **********************************************************************/
@@ -26,7 +20,8 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlSeeAlso({
   SammelUeberweisung.class,
   SammelLastschrift.class,
-  SepaSammelLastschrift.class
+  SepaSammelLastschrift.class,
+  SepaSammelUeberweisung.class
 })
 public abstract class BundlePayment<T extends PaymentData> extends Payment
 {
@@ -82,17 +77,3 @@ public abstract class BundlePayment<T extends PaymentData> extends Payment
   
   
 }
-
-
-/**********************************************************************
- * $Log: BundlePayment.java,v $
- * Revision 1.3  2010/01/20 10:39:26  willuhn
- * @B javac stoert sich offensichtlich am letzten Komma der Annotation
- *
- * Revision 1.2  2008/10/27 14:21:19  willuhn
- * @N XmlSeeAlso-Tags
- *
- * Revision 1.1  2008/10/21 00:17:58  willuhn
- * @N Sammel-Auftraege. Geht noch nicht - CXF kommt wohl mit der Vererbung nicht klar
- *
- **********************************************************************/
