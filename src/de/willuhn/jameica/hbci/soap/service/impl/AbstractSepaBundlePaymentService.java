@@ -15,7 +15,7 @@ import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.ObjectNotFoundException;
 import de.willuhn.jameica.hbci.rmi.HBCIDBService;
 import de.willuhn.jameica.hbci.rmi.SepaSammelTransfer;
-import de.willuhn.jameica.hbci.soap.beans.BundlePayment;
+import de.willuhn.jameica.hbci.soap.beans.SepaBundlePayment;
 import de.willuhn.jameica.hbci.soap.service.PaymentService;
 import de.willuhn.util.ApplicationException;
 
@@ -25,7 +25,7 @@ import de.willuhn.util.ApplicationException;
  * @param <T> der konkrete SOAP-Typ.
  * @param <R> der konkrete Hibiscus-Typ.
  */
-public abstract class AbstractSepaBundlePaymentService<T extends BundlePayment, R extends SepaSammelTransfer> extends AbstractService implements PaymentService<T>
+public abstract class AbstractSepaBundlePaymentService<T extends SepaBundlePayment, R extends SepaSammelTransfer> extends AbstractService implements PaymentService<T>
 {
   /**
    * @see de.willuhn.jameica.hbci.soap.service.PaymentService#delete(java.lang.String)

@@ -13,6 +13,8 @@ import java.util.List;
 import javax.jws.WebService;
 
 import de.willuhn.datasource.rmi.ObjectNotFoundException;
+import de.willuhn.jameica.hbci.MetaKey;
+import de.willuhn.jameica.hbci.rmi.BatchBookType;
 import de.willuhn.jameica.hbci.rmi.HBCIDBService;
 import de.willuhn.jameica.hbci.rmi.SepaSammelLastBuchung;
 import de.willuhn.jameica.hbci.soap.beans.Konto;
@@ -74,6 +76,10 @@ public class SepaSammelLastschriftServiceImpl extends AbstractSepaBundlePaymentS
       uh.setTargetDate(bundle.getTargetDate());
       uh.store();
       
+      BatchBookType batch = BatchBookType.byValue(bundle.getBatchBooking());
+      if (batch != null)
+        MetaKey.SEPA_BATCHBOOK.set(uh,batch.getValue());
+      
       for (SepaSammelLastschriftBuchung data:payments)
       {
         SepaSammelLastBuchung b = uh.createBuchung();
@@ -128,6 +134,10 @@ public class SepaSammelLastschriftServiceImpl extends AbstractSepaBundlePaymentS
     t.setSequenceType(SepaLastSequenceType.valueOf(uh.getSequenceType().name()));
     t.setTargetDate(uh.getTargetDate());
     t.setType(SepaLastType.valueOf(uh.getType().name()));
+    
+    BatchBookType batch = BatchBookType.byValue(MetaKey.SEPA_BATCHBOOK.get(uh));
+    if (batch != null)
+      t.setBatchBooking(batch.getBooleanValue());
     
     List<SepaSammelLastBuchung> buchungen = uh.getBuchungen();
     for (SepaSammelLastBuchung b:buchungen)

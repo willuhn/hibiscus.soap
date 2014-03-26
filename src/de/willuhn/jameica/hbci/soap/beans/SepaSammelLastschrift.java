@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * SEPA-Sammel-Lastschrift.
  */
-public class SepaSammelLastschrift extends BundlePayment<SepaSammelLastschriftBuchung>
+public class SepaSammelLastschrift extends SepaBundlePayment<SepaSammelLastschriftBuchung>
 {
   private SepaLastSequenceType sequenceType = null;
   private Date targetDate = null;

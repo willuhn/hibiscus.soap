@@ -13,6 +13,8 @@ import java.util.List;
 import javax.jws.WebService;
 
 import de.willuhn.datasource.rmi.ObjectNotFoundException;
+import de.willuhn.jameica.hbci.MetaKey;
+import de.willuhn.jameica.hbci.rmi.BatchBookType;
 import de.willuhn.jameica.hbci.rmi.HBCIDBService;
 import de.willuhn.jameica.hbci.soap.beans.Konto;
 import de.willuhn.jameica.hbci.soap.beans.SepaSammelUeberweisung;
@@ -68,6 +70,10 @@ public class SepaSammelUeberweisungServiceImpl extends AbstractSepaBundlePayment
       uh.setTermin(bundle.getDatum());
       uh.store();
       
+      BatchBookType batch = BatchBookType.byValue(bundle.getBatchBooking());
+      if (batch != null)
+        MetaKey.SEPA_BATCHBOOK.set(uh,batch.getValue());
+      
       for (SepaSammelUeberweisungBuchung data:payments)
       {
         de.willuhn.jameica.hbci.rmi.SepaSammelUeberweisungBuchung b = uh.createBuchung();
@@ -116,6 +122,10 @@ public class SepaSammelUeberweisungServiceImpl extends AbstractSepaBundlePayment
     t.setBezeichnung(uh.getBezeichnung());
     t.setKonto(KontoServiceImpl.copy(uh.getKonto()));
     t.setDatum(uh.getTermin());
+    
+    BatchBookType batch = BatchBookType.byValue(MetaKey.SEPA_BATCHBOOK.get(uh));
+    if (batch != null)
+      t.setBatchBooking(batch.getBooleanValue());
     
     List<de.willuhn.jameica.hbci.rmi.SepaSammelUeberweisungBuchung> buchungen = uh.getBuchungen();
     for (de.willuhn.jameica.hbci.rmi.SepaSammelUeberweisungBuchung b:buchungen)

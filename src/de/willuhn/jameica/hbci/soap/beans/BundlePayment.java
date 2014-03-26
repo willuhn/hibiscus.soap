@@ -19,9 +19,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  */
 @XmlSeeAlso({
   SammelUeberweisung.class,
-  SammelLastschrift.class,
-  SepaSammelLastschrift.class,
-  SepaSammelUeberweisung.class
+  SammelLastschrift.class
 })
 public abstract class BundlePayment<T extends PaymentData> extends Payment
 {

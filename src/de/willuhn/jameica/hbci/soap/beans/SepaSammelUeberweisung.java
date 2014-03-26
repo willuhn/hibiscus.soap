@@ -12,6 +12,6 @@ package de.willuhn.jameica.hbci.soap.beans;
 /**
  * SEPA-Sammel-Ueberweisung.
  */
-public class SepaSammelUeberweisung extends BundlePayment<SepaSammelUeberweisungBuchung>
+public class SepaSammelUeberweisung extends SepaBundlePayment<SepaSammelUeberweisungBuchung>
 {
 }
