@@ -74,6 +74,7 @@ public class SepaSammelLastschriftServiceImpl extends AbstractSepaBundlePaymentS
       uh.setSequenceType(de.willuhn.jameica.hbci.rmi.SepaLastSequenceType.valueOf(bundle.getSequenceType().name()));
       uh.setType(de.willuhn.jameica.hbci.rmi.SepaLastType.valueOf(bundle.getType().name()));
       uh.setTargetDate(bundle.getTargetDate());
+      uh.setPmtInfId(bundle.getPmtInfId());
       uh.store();
       
       BatchBookType batch = BatchBookType.byValue(bundle.getBatchBooking());
@@ -134,6 +135,7 @@ public class SepaSammelLastschriftServiceImpl extends AbstractSepaBundlePaymentS
     t.setSequenceType(SepaLastSequenceType.valueOf(uh.getSequenceType().name()));
     t.setTargetDate(uh.getTargetDate());
     t.setType(SepaLastType.valueOf(uh.getType().name()));
+    t.setPmtInfId(uh.getPmtInfId());
     
     BatchBookType batch = BatchBookType.byValue(MetaKey.SEPA_BATCHBOOK.get(uh));
     if (batch != null)

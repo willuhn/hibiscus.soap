@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 public abstract class SepaPayment extends SinglePayment
 {
   private String endToEndId = null;
+  private String pmtInfId = null;
   
   /**
    * Liefert die EndtoEnd-ID.
@@ -38,6 +39,24 @@ public abstract class SepaPayment extends SinglePayment
   public void setEndToEndId(String id)
   {
     this.endToEndId = id;
+  }
+  
+  /**
+   * Liefert die Payment-Information-ID.
+   * @return pmtInfId die Payment-Information-ID.
+   */
+  public String getPmtInfId()
+  {
+    return pmtInfId;
+  }
+  
+  /**
+   * Speichert die Payment-Information-ID.
+   * @param pmtInfId pmtInfId
+   */
+  public void setPmtInfId(String pmtInfId)
+  {
+    this.pmtInfId = pmtInfId;
   }
 
 }

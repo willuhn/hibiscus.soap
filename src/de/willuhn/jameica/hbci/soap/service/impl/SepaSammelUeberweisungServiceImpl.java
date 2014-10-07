@@ -68,6 +68,7 @@ public class SepaSammelUeberweisungServiceImpl extends AbstractSepaBundlePayment
       uh.setBezeichnung(bundle.getBezeichnung());
       uh.setKonto(kh);
       uh.setTermin(bundle.getDatum());
+      uh.setPmtInfId(bundle.getPmtInfId());
       uh.store();
       
       BatchBookType batch = BatchBookType.byValue(bundle.getBatchBooking());
@@ -122,6 +123,7 @@ public class SepaSammelUeberweisungServiceImpl extends AbstractSepaBundlePayment
     t.setBezeichnung(uh.getBezeichnung());
     t.setKonto(KontoServiceImpl.copy(uh.getKonto()));
     t.setDatum(uh.getTermin());
+    t.setPmtInfId(uh.getPmtInfId());
     
     BatchBookType batch = BatchBookType.byValue(MetaKey.SEPA_BATCHBOOK.get(uh));
     if (batch != null)

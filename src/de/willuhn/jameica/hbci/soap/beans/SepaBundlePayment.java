@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 public abstract class SepaBundlePayment<T extends PaymentData> extends BundlePayment<T>
 {
   private Boolean batchBooking = null;
+  private String pmtInfId = null;
   
   /**
    * Liefert das optionale Batchbooking-Flag.
@@ -38,5 +39,23 @@ public abstract class SepaBundlePayment<T extends PaymentData> extends BundlePay
   public void setBatchBooking(Boolean b)
   {
     this.batchBooking = b;
+  }
+
+  /**
+   * Liefert die Payment-Information-ID.
+   * @return pmtInfId die Payment-Information-ID.
+   */
+  public String getPmtInfId()
+  {
+    return pmtInfId;
+  }
+  
+  /**
+   * Speichert die Payment-Information-ID.
+   * @param pmtInfId pmtInfId
+   */
+  public void setPmtInfId(String pmtInfId)
+  {
+    this.pmtInfId = pmtInfId;
   }
 }
