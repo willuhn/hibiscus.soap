@@ -15,8 +15,6 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  * Abstracte SOAP-Bean fuer einen Einzelauftrag.
  */
 @XmlSeeAlso({
-  Ueberweisung.class,
-  Lastschrift.class,
   Umsatz.class,
   SepaUeberweisung.class,
   SepaLastschrift.class

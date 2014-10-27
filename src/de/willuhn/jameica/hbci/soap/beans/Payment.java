@@ -23,10 +23,6 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  * Eine Zahlung.
  */
 @XmlSeeAlso({
-  Ueberweisung.class,
-  Lastschrift.class,
-  SammelUeberweisung.class,
-  SammelLastschrift.class,
   SepaUeberweisung.class,
   Umsatz.class
 })

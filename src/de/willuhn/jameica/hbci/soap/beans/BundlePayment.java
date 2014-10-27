@@ -10,17 +10,11 @@ package de.willuhn.jameica.hbci.soap.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlSeeAlso;
-
 
 /**
  * SOAP-Bean fuer einen Sammel-Auftrag.
  * @param <T> der konkrete Typ der Buchungen.
  */
-@XmlSeeAlso({
-  SammelUeberweisung.class,
-  SammelLastschrift.class
-})
 public abstract class BundlePayment<T extends PaymentData> extends Payment
 {
   private String bezeichnung = null;
