@@ -101,6 +101,7 @@ public class Test
     {
       System.out.println(b.getCreditorId());
       System.out.println(b.getEndToEndId());
+      System.out.println(b.getPurposeCode());
       System.out.println(b.getBetrag());
     }
     

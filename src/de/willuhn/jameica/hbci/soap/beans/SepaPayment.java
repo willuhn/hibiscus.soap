@@ -22,6 +22,7 @@ public abstract class SepaPayment extends SinglePayment
 {
   private String endToEndId = null;
   private String pmtInfId = null;
+  private String purposeCode = null;
   
   /**
    * Liefert die EndtoEnd-ID.
@@ -57,6 +58,24 @@ public abstract class SepaPayment extends SinglePayment
   public void setPmtInfId(String pmtInfId)
   {
     this.pmtInfId = pmtInfId;
+  }
+  
+  /**
+   * Liefert den SEPA-Purpose-Code.
+   * @return der SEPA-Purpose-Code.
+   */
+  public String getPurposeCode()
+  {
+    return purposeCode;
+  }
+  
+  /**
+   * Speichert den SEPA-Purpose-Code.
+   * @param purposeCode der SEPA-Purpose-Code.
+   */
+  public void setPurposeCode(String purposeCode)
+  {
+    this.purposeCode = purposeCode;
   }
 
 }

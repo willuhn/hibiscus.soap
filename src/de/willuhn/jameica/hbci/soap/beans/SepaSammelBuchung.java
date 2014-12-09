@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 public class SepaSammelBuchung extends PaymentData
 {
   private String endToEndId = null;
+  private String purposeCode = null;
   
   /**
    * Liefert die EndtoEnd-ID.
@@ -36,6 +37,24 @@ public class SepaSammelBuchung extends PaymentData
   public void setEndToEndId(String id)
   {
     this.endToEndId = id;
+  }
+  
+  /**
+   * Liefert den SEPA-Purpose-Code.
+   * @return der SEPA-Purpose-Code.
+   */
+  public String getPurposeCode()
+  {
+    return purposeCode;
+  }
+  
+  /**
+   * Speichert den SEPA-Purpose-Code.
+   * @param purposeCode der SEPA-Purpose-Code.
+   */
+  public void setPurposeCode(String purposeCode)
+  {
+    this.purposeCode = purposeCode;
   }
 
 }

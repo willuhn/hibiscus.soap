@@ -91,6 +91,7 @@ public class SepaSammelLastschriftServiceImpl extends AbstractSepaBundlePaymentS
         b.setZweck(data.getZweck1());
         
         b.setEndtoEndId(data.getEndToEndId());
+        b.setPurposeCode(data.getPurposeCode());
         b.setMandateId(data.getMandateId());
         b.setCreditorId(data.getCreditorId());
         b.setSignatureDate(data.getSignatureDate());
@@ -151,6 +152,7 @@ public class SepaSammelLastschriftServiceImpl extends AbstractSepaBundlePaymentS
       data.setGegenkontoNummer(b.getGegenkontoNummer());
       data.setZweck1(b.getZweck());
       data.setEndToEndId(b.getEndtoEndId());
+      data.setPurposeCode(b.getPurposeCode());
       data.setMandateId(b.getMandateId());
       data.setCreditorId(b.getCreditorId());
       data.setSignatureDate(b.getSignatureDate());

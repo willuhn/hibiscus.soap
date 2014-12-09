@@ -85,6 +85,7 @@ public class SepaSammelUeberweisungServiceImpl extends AbstractSepaBundlePayment
         b.setZweck(data.getZweck1());
         
         b.setEndtoEndId(data.getEndToEndId());
+        b.setPurposeCode(data.getPurposeCode());
         b.store();
       }
       
@@ -139,6 +140,7 @@ public class SepaSammelUeberweisungServiceImpl extends AbstractSepaBundlePayment
       data.setGegenkontoNummer(b.getGegenkontoNummer());
       data.setZweck1(b.getZweck());
       data.setEndToEndId(b.getEndtoEndId());
+      data.setPurposeCode(b.getPurposeCode());
       
       t.add(data);
     }

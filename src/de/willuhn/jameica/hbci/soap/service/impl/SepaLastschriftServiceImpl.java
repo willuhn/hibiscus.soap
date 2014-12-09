@@ -126,6 +126,7 @@ public class SepaLastschriftServiceImpl extends AbstractService implements SepaL
     lh.setGegenkontoNummer(data.getGegenkontoNummer());
     lh.setZweck(data.getZweck1());
     lh.setEndtoEndId(lastschrift.getEndToEndId());
+    lh.setPurposeCode(lastschrift.getPurposeCode());
     lh.setPmtInfId(lastschrift.getPmtInfId());
     lh.setMandateId(lastschrift.getMandateId());
     lh.setCreditorId(lastschrift.getCreditorId());
@@ -169,6 +170,7 @@ public class SepaLastschriftServiceImpl extends AbstractService implements SepaL
     l.setDatum(uh.getTermin());
     l.setKonto(KontoServiceImpl.copy(uh.getKonto()));
     l.setEndToEndId(uh.getEndtoEndId());
+    l.setPurposeCode(uh.getPurposeCode());
     l.setPmtInfId(uh.getPmtInfId());
     l.setMandateId(uh.getMandateId());
     l.setCreditorId(uh.getCreditorId());
