@@ -24,6 +24,9 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  */
 @XmlSeeAlso({
   SepaUeberweisung.class,
+  SepaLastschrift.class,
+  SepaSammelLastschrift.class,
+  SepaSammelUeberweisung.class,
   Umsatz.class
 })
 public abstract class Payment implements Serializable
